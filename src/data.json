@@ -1,0 +1,37 @@
+{
+
+    "totalPoliceBudget": 0,
+    "costPerOfficer": 153000,
+    "startOfficerCount": 1400, 
+    "PBProjects" : [
+        {
+            "name" : "HOUSING",
+            "unit" : "1 year of housing for 7 adults.",
+            "quantity" : 1,
+            "cost" : 153000,
+            "count" : 0
+        },
+        {
+            "name" : "EDUCATION",
+            "unit" : "1 year of preschool for 8 children.",
+            "quantity" : 1,
+            "cost" : 153000,
+            "count" : 0
+        },
+        {
+            "name" : "HEALTH",
+            "unit" : "1 year of medical coverage for 26 families of 4.",
+            "quantity" : 1,
+            "cost" : 153000,
+            "count" : 0
+        },
+        {
+            "name" : "FOOD",
+            "unit" : "1 year of food costs for 14 families of 4.",
+            "quantity" : 1,
+            "cost" : 153000,
+            "count" : 0
+        }
+
+    ]
+}
