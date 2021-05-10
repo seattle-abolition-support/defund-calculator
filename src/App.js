@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import Data from "./data.json";
 
@@ -64,7 +64,7 @@ export default class App extends React.Component {
     console.log(projectName);
     let newProjects = [...this.state.projects]
     for (var i in newProjects) {
-      if (newProjects[i].name == projectName) {
+      if (newProjects[i].name === projectName) {
         newProjects[i].count = newProjects[i].count + 1;
         break; //Stop this loop, we found it!
       }
@@ -83,7 +83,7 @@ export default class App extends React.Component {
 
     let newProjects = [...this.state.projects]
     for (var i in newProjects) {
-      if (newProjects[i].name == projectName) {
+      if (newProjects[i].name === projectName) {
         newProjects[i].count = newProjects[i].count - 1;
          break; //Stop this loop, we found it!
       }
@@ -134,14 +134,14 @@ export default class App extends React.Component {
 }
 
 class PoliceBudget extends React.Component {
-  constructor(props) {
-    super(props);
-    //this.state = { };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   //this.state = { };
+  // }
 
 
   render() {
-    var totalBudgetFormat = "$" + this.props.totalBudget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //var totalBudgetFormat = "$" + this.props.totalBudget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var currentBudgetFormat = "$" + this.props.currentBudget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var costPerOfficer = "$" + this.props.costPerOfficer.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return (
@@ -157,10 +157,10 @@ class PoliceBudget extends React.Component {
 }
 
 class PBBudget extends React.Component {
-  constructor(props) {
-    super(props);
-    //this.state = { };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   //this.state = { };
+  // }
   render() {
     var totalPBFormat = "$" + this.props.totalPB.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     var allocatedPBFormat = "$" + this.props.allocatedPB.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -170,7 +170,7 @@ class PBBudget extends React.Component {
 
     var message = []
     
-    if(this.props.totalPB == 0) {
+    if(this.props.totalPB === 0) {
       message.push("Participatory budgeting puts the budget for public health and safety into the hands of the community.");
       message.push("Defund some police to fund PB!");
       message.push("\u261A");
