@@ -1,37 +1,94 @@
 {
-
-    "totalPoliceBudget": 0,
-    "costPerOfficer": 153000,
-    "startOfficerCount": 1400, 
-    "PBProjects" : [
+    "StartPoliceBudget": 0,
+    "StartOfficerCount": 1400, 
+    "CurrentOfficerCount" : 1400,
+    "CostPerOfficer": 153000,
+    "TotalPoliceBudget": 0,
+    "CurrentPoliceBudget": 0,
+    "TotalCommunityBudget": 0,
+    "AllocatedCommunityBudget": 0,
+    "AvailableCommunityBudget": 0,
+    "DefundButtons" : [
         {
-            "name" : "HOUSING",
-            "unit" : "1 year of housing for 7 adults.",
-            "quantity" : 1,
-            "cost" : 153000,
-            "count" : 0
+            "Label" : "Officer",
+            "Number" : 1
         },
         {
-            "name" : "EDUCATION",
-            "unit" : "1 year of preschool for 8 children.",
-            "quantity" : 1,
-            "cost" : 153000,
-            "count" : 0
+            "Label" : "Officers",
+            "Number" : 10
         },
         {
-            "name" : "HEALTH",
-            "unit" : "1 year of medical coverage for 26 families of 4.",
-            "quantity" : 1,
-            "cost" : 153000,
-            "count" : 0
-        },
-        {
-            "name" : "FOOD",
-            "unit" : "1 year of food costs for 14 families of 4.",
-            "quantity" : 1,
-            "cost" : 153000,
-            "count" : 0
+            "Label" : "Officers",
+            "Number" : 100
         }
-
-    ]
+    ],
+    "Categories" : [
+        {
+            "Name" : "HOUSING",
+            "Description" : "The benefits of funding housing...",
+            "Cost" : 153000,
+            "Total" : 0,
+            "ItemList" : [],
+            "Items" : [
+                "Housing item 1 for #2# people.",
+                "Housing item 2 for #3# people."
+            ]
+        },
+        {
+            "Name" : "EDUCATION",
+            "Description" : "The benefits of funding education...",
+            "Cost" : 153000,
+            "Total" : 0,
+            "ItemList" : [],
+            "Items" : [
+                "Education item 1 for #2# people.",
+                "Education item 2 for #3# people."
+            ]
+        },
+        {
+            "Name" : "HEALTH",
+            "Description" : "The benefits of funding health...",
+            "Cost" : 153000,
+            "Total" : 0,
+            "ItemList" : [],
+            "Items" : [
+                "#1# year of Health item 1.",
+                "#1# year of Health item 2."
+            ]
+        },
+        {
+            "Name" : "FOOD",
+            "Description" : "The benefits of funding food...",
+            "Cost" : 153000,
+            "Total" : 0,
+            "ItemList" : [],
+            "Items" : [
+                "Food item 1 for #2# families.",
+                "Food item 2 for #2# families."
+            ]
+        },
+        {
+            "Name" : "CHILDCARE",
+            "Description" : "The benefits of funding childcare...",
+            "Cost" : 153000,
+            "Total" : 0,
+            "ItemList" : [],
+            "Items" : [
+                "Childcare item 1 for #2# families.",
+                "Childcare item 2 for #4# families."
+            ]
+        }
+    ],
+    "InitScreenMessage" : "Init screen",
+    "InitStatusMessage" : "Defund police to free up dollars to invest in our communities.",
+    "UI" : {
+        "MainTitle" : "DEFUND CALCULATOR",
+        "AvailableBudgetText" : "Community has $BUDGET to spend.",
+        "ShowMeText" : "SHOW ME WHAT I'VE FUNDED",
+        "ResourcesText" : "RESOURCES",
+        "AboutText" : "ABOUT",
+        "CategoriesUnlockedText" : "You took money from the absurdly huge police budget. Click the plus sign to fund community-based Participatory Budgeting initiatives!",
+        "FundedText" : "You funded ",
+        "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund."
+    }
 }
