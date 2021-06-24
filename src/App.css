@@ -9,6 +9,9 @@
 
 .App {
   text-align: center;
+  font-size: 4.5vmin;
+  line-height: 5vmin;
+  user-select: none;
   font-family: Baloo2;
 }
 
@@ -85,7 +88,9 @@ background-color: #39688E;
 
 .StatusTextBox {
   background-color: #FFFF99;
-  height: 12vmin;
+  display: table-cell;
+  height: 15vmin;
+  vertical-align: middle;
 }
 
 .MiddleContainer {
@@ -95,6 +100,7 @@ background-color: #39688E;
 
 .AvailableTextBox {
   color: #000000;
+  padding: .5vmin;
 }
 
 .AllocateButtonDiv {
@@ -144,10 +150,12 @@ background-color: #39688E;
 .CategoryDiv {
   display: flex;
   flex-direction: column;
+  color: #5F6596
 }
 
 .CategoryButton {
   background-color: #BEE2AF;
+  
   display: flex;
   justify-content: space-between;
   border-radius: .5vmin;
@@ -258,13 +266,64 @@ background-color: #39688E;
 }
 
 .ShowMeScreen {
-  background-color: #E28DDA;
+  background-color: #000000;
   position: absolute;
+  display: flex;
+  flex-direction: column;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   z-index: 100;
+}
+.ShowMeTitle {
+  color: #FDE92B;
+  font-family: Baloo2;
+  font-size: 16vmin;
+  line-height:normal;
+}
+.ShowMeCategoryContainer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 3vmin;
+  padding-left: 3vmin;
+  padding-right: 3vmin;
+}
+.ShowMeCategory {
+  color: #9198E2;
+  font-family: Baloo2;
+  font-size: 8vmin;
+  line-height: normal;
+  text-align: left;
+}
+.ShowMeCategoryTotal {
+  color: #C9C9C9;
+  font-family: Baloo2;
+  font-size: 8vmin;
+  line-height:normal;
+  text-align: right;
+}
+.ShowMeItem {
+  color: #D9EF33;
+  font-family: Baloo2;
+  font-size: 5vmin;
+  line-height:normal;
+}
+
+.ReturnToDefundButton {
+  background-color: #2BB673;
+  color: #ffffff;
+  font-size: 8vmin;
+  line-height:normal;
+  display: flex;
+  justify-content: center;
+  border-radius: .5vmin;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 10vmin;
+  margin-bottom: 1.5vmin;
+  padding: 2vmin;
+  filter: drop-shadow(.5vmin .5vmin 0px #006838); 
 }
 
 

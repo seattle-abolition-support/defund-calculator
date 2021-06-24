@@ -13,7 +13,25 @@ import Handcuffs from "./images/cop stuff/handcuffs.svg"
 import Helicopter from "./images/cop stuff/helicopter.svg"
 import Motorcycle from "./images/cop stuff/motorcycle.svg"
 import Vest from "./images/cop stuff/vest.svg"
-import WalkieTalke from "./images/cop stuff/walkie-talkie.svg"
+import WalkieTalkie from "./images/cop stuff/walkie-talkie.svg"
+
+import Carrot from "./images/city stuff/carrot.svg"
+import Crayon from "./images/city stuff/crayon.svg"
+import MedicalWorker from "./images/city stuff/medical-worker.svg"
+import PrideFlag from "./images/city stuff/pride-flag.svg"
+import Rainbow from "./images/city stuff/rainbow.svg"
+import RedApple from "./images/city stuff/red-apple.svg"
+import SunWithFace from "./images/city stuff/sun-with-face.svg"
+import TownHouses from "./images/city stuff/town-houses.svg"
+import Tulip from "./images/city stuff/tulip.svg"
+import WhiteCloud from "./images/city stuff/white-cloud.svg"
+
+
+import Skyline0 from "./images/city stuff/skyline0.svg"
+import Skyline1 from "./images/city stuff/skyline1.svg"
+import Skyline2 from "./images/city stuff/skyline2.svg"
+import Skyline3 from "./images/city stuff/skyline3.svg"
+import Skyline4 from "./images/city stuff/skyline4.svg"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -23,11 +41,14 @@ export default class App extends React.Component {
       selectedCategory: Data.Categories[0],
       statusMessage: Data.InitStatusMessage,
       categoriesUnlocked: false,
-      showMe: false
+      showMe: false,
+      gameDefundCount: 0,
+      gameFundCount: 0
     };
 
-
+    
     this.recalculateBudgets();
+    
   }
   
 
@@ -68,6 +89,8 @@ export default class App extends React.Component {
     }));
   }
 
+
+
   defund = (c) =>  {
     var d = this.state.data;
 
@@ -81,11 +104,23 @@ export default class App extends React.Component {
       d.CurrentOfficerCount = 0;
       // VICTORY!!!
     }
+
+    let gameDefundCount = 0;
+    for(var i = 0; i < d.DefundButtons.length; i++){
+      if(c == parseInt(d.DefundButtons[i].Number)) {
+        gameDefundCount = i + 1;
+      }
+    }
+
     this.setState((state, props) => ({
-      data : d
+      data : d,
+      gameDefundCount : gameDefundCount
     }), () => this.recalculateBudgets());
 
+
   }
+
+  
 
   selectCategory = (cat) =>  {
     this.setState((state, props) => ({
@@ -106,6 +141,7 @@ export default class App extends React.Component {
     
     let message = this.state.statusMessage;
     let updated = false;
+    let gameFundCount = 0;
 
     if(n > 0 && this.state.data.AvailableCommunityBudget >= this.state.selectedCategory.Cost) {
       let item = Math.floor(Math.random() * d.Categories[idx].Items.length);
@@ -113,22 +149,27 @@ export default class App extends React.Component {
       d.Categories[idx].ItemList.push(item);
       message = d.UI.FundedText + d.Categories[idx].Items[item].replaceAll("#","");
       updated = true;
+      gameFundCount = 1;
     }
     else if(this.state.selectedCategory.ItemList.length > 0)
     {
       d.Categories[idx].ItemList.pop();
       message = d.UI.DeallocateText;
       updated = true;
+      gameFundCount = -1;
     }
     if(updated) {
       this.setState((state, props) => ({
         data : d,
-        statusMessage : message
+        statusMessage : message,
+        gameFundCount : gameFundCount
       }), () => this.recalculateBudgets());
     }
-    
-    
   }
+
+  
+
+  
 
   toggleShowMe = () => {
     if(this.state.data.AllocatedCommunityBudget > 0) {
@@ -140,6 +181,24 @@ export default class App extends React.Component {
 
   formatDollars = (s) =>  {
     return "$" + s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.gameDefundCount != 0) {
+      console.log("componentDidUpdate");
+      console.log("gameDefundCount " + this.state.gameDefundCount);
+      this.setState((state, props) => ({
+        gameDefundCount : 0
+      }));
+    }
+
+    if(this.state.gameFundCount != 0) {
+      console.log("componentDidUpdate FUND");
+      console.log("gameFundCount " + this.state.gameFundCount);
+      this.setState((state, props) => ({
+        gameFundCount : 0
+      }));
+    }
   }
   
 
@@ -162,7 +221,7 @@ export default class App extends React.Component {
     if(this.state.data.AvailableCommunityBudget < this.state.selectedCategory.Cost) {
       allocateButtonClass = "AllocateButtonDisabled";
     }
-    if(this.state.selectedCategory.ItemList.length == 0) {
+    if(this.state.selectedCategory.ItemList.length === 0) {
       deallocateButtonClass = "AllocateButtonDisabled";
     }
     if(this.state.data.AllocatedCommunityBudget === 0) {
@@ -176,7 +235,7 @@ export default class App extends React.Component {
 
     <div className="App">
       {this.state.showMe ? 
-        <ShowMePage data={this.state.data}/> : null
+        <ShowMePage data={this.state.data} formatDollars={this.formatDollars} toggleShowMe={this.toggleShowMe}/> : null
       }
 
       <div className="Main">
@@ -200,7 +259,7 @@ export default class App extends React.Component {
           <div> {this.state.data.ScreenMessage}</div>
           <div className="GameArea">
            
-            <Game/>
+            <Game gameDefundCount = {this.state.gameDefundCount} gameFundCount = {this.state.gameFundCount}/>
           </div>
         </div>
         <div className="StatusTextBox">
@@ -251,38 +310,145 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
 
-    let copImages = [Batton, BigBadge, CopCar, GasMask, Gun, Handcuffs, Helicopter, Motorcycle, Vest, WalkieTalke];
+    // let copImages = [Batton, BigBadge, CopCar, GasMask, Gun, Handcuffs, Helicopter, Motorcycle, Vest, WalkieTalkie];
+    // let baseScale = [.5, .7, 1, 1.0, 1, .7, 1.1, 1.1, .5, .3];
+    // let baseRotation = [180, 30, 30, 90, 180, 180, 45, 0, 0, 90  ];
+
+    let copImages = [BigBadge, CopCar, GasMask, Gun, Handcuffs, Helicopter, Motorcycle, WalkieTalkie];
+    let baseScale = [.7, 1, 1.0, 1, .7, 1.1, 1.1, .3];
+    let baseRotation = [30, 30, 90, 180, 180, 45, 0, 90  ];
+
+    let cityImages = [Carrot, Crayon, MedicalWorker, PrideFlag, Rainbow, RedApple, TownHouses, Tulip]
     
-    for(var img in copImages) {
-      console.log("width: " + img.width);
-    }
 
+    let skylineImages = [Skyline0, Skyline1, Skyline2, Skyline3, Skyline4];
 
+    let spriteLayers = 5;
+    let baseLayerCount = 9;
     let spriteData = [];
-    for (var i = 0; i < 50; i++) {
-      spriteData.push(
-        {
-          x: ((i % 10) * 10)  + Math.floor(Math.random() * 5),
-          y: (Math.floor(i / 10) * 20) + Math.floor(Math.random() * 5),
-          img: copImages[Math.floor(Math.random() * copImages.length)],
-          scale: Math.floor(25 + Math.random() * 10)
-        }
-      )
+    let cityData = [];
+    let skylineData = [];
+    for (var i = 0; i < spriteLayers; i++) {
+
+      var layerScale = 1 - ((i / spriteLayers) * .5);
+      var layerCount = Math.floor(baseLayerCount / layerScale);
+      for(var j = 0; j < layerCount; j++) {
+        let imgIdx = Math.floor(Math.random() * copImages.length);
+        let x = -10 + 120 * (j / layerCount);
+        let y = 70 - 80 * (i / spriteLayers);
+        let z = Math.floor(100 * ((spriteLayers - i) + Math.random()));
+        let s = layerScale * 30 * baseScale[imgIdx];
+
+        spriteData.push(
+          {
+            x: x,
+            y: y,
+            img: copImages[imgIdx],
+            scale: s,
+            rotation: 0,//Math.floor((Math.random() * baseRotation[imgIdx]) - (baseRotation[imgIdx] * .5))
+            zindex: z
+          }
+        )
+
+        let slx = 0;
+        let sly = 70 - (60 * (i / spriteLayers));
+        let slz = Math.floor(100 * (spriteLayers - i));
+        let simage = skylineImages[i % skylineImages.length]
+
+        skylineData.push(
+          {
+            img: simage,
+            x: slx,
+            y: sly,
+            zindex: slz,
+            scale: 100
+          }
+        )
+
+      }
     }
 
-    this.state = { spriteData: spriteData}
+    // reverse Z
+    spriteData.sort((a, b) => {
+      return a.zindex - b.zindex;
+    });
+
+    this.state = { spriteData: spriteData, skylineData: skylineData, spriteLayers: spriteLayers, cityData: cityData, cityImages: cityImages}
   }
 
   
 
   render() {    
+    
+
     return (
       <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden"}}>
-        {this.state.spriteData.map((spriteData) => (
-          <img src={spriteData.img}  style={{ position: "absolute", left: (spriteData.x ).toString() + "%",  top: (spriteData.y).toString() + "%",  width: spriteData.scale.toString() + "vmin", height: "auto"}}/>
-        ))}
+        {this.state.spriteData.map((spriteData, index) => (
+          <img src={spriteData.img}  style={{ position: "absolute", left: (spriteData.x ).toString() + "%",  top: (spriteData.y).toString() + "%",  width: spriteData.scale.toString() + "vmin", height: "auto", zIndex: (spriteData.zindex).toString(), transform: "rotate(" + spriteData.rotation + "deg)"}}  alt="" key={"copsprite_" + index}/>
+       ))}
+       {this.state.skylineData.map((skylineData, index) => (
+          <img src={skylineData.img}  style={{ position: "absolute", left: (skylineData.x ).toString() + "%",  top: (skylineData.y).toString() + "%",  width: skylineData.scale.toString() + "%", height: "auto", zIndex: (skylineData.zindex).toString()}}  alt="" key={"skyline_" + index}/>
+       ))}
+       {this.state.cityData.map((cityData, index) => (
+          <img src={cityData.img}  style={{ position: "absolute", left: (cityData.x ).toString() + "%",  top: (cityData.y).toString() + "%",  width: cityData.scale.toString() + "%", height: "auto", zIndex: (cityData.zindex).toString()}}  alt="" key={"citysprite_" + index}/>
+       ))}
       </div>
     );
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("game componentDidUpdate " + this.props.gameDefundCount);
+    console.log(this.props);
+    if(prevProps.gameDefundCount == 0 && this.props.gameDefundCount != 0) {
+      
+
+
+      let spriteData = this.state.spriteData;
+      for(var i = 0; i < this.props.gameDefundCount; i++) {
+        spriteData.pop();
+      }
+      this.setState((state, props) => ({
+        spriteData : spriteData
+      }));
+    }
+    if(prevProps.gameFundCount == 0 && this.props.gameFundCount != 0)
+    {
+      let cityData = this.state.cityData;
+      if(this.props.gameFundCount > 0) {
+        let newCityItem = this.getNewCityItem();
+        console.log("newCityItem " + newCityItem);
+        cityData.push(newCityItem);
+      }else{
+        cityData.pop();
+      }
+      this.setState((state, props) => ({
+        cityData : cityData
+      }));
+
+    }
+  }
+
+  getNewCityItem = () => {
+
+
+    let img = this.state.cityImages[Math.floor(Math.random() * this.state.cityImages.length)];
+
+    
+    let zHack = this.state.spriteLayers - Math.floor((this.state.spriteLayers * (this.state.cityData.length / 50)) % this.state.spriteLayers);
+
+    let x = Math.floor(Math.random() * 100);
+    let y = Math.floor(80 - (1 - (zHack / this.state.spriteLayers)) * 60);
+    
+    let z = Math.floor(100 * (zHack + Math.random()));
+
+    return {
+        img: img,
+        x: x,
+        y: y,
+        zindex: z,
+        scale: 10
+      };
   }
 }
 
@@ -308,13 +474,23 @@ class ShowMePage extends React.Component {
 
       // Loop through each category item
       for(var j = 0; j < cat.Items.length; j++) {
-        var result = cat.ItemList.filter(x => x === j).length;
+
+        // function in a loop warning
+        //var result = cat.ItemList.filter((x) => x === j).length;
+        var result = 0;
+        for(var idx = 0; idx < cat.ItemList.length; idx++) {
+          result = (cat.ItemList[idx] === j) ? result + 1 : result;
+        }
+        
+        
 
         // If any items are allocated, add a display string
         if(result > 0) {
           var displayString = cat.Items[j]; 
-          if(displayString.search("#.+#")) {
-            var m = displayString.match("#(.+)#");
+
+          var m = displayString.match("#(.+)#");
+          if(m) {
+
             var replace = m[0]
             var count = parseInt(m[1]) * result;
             displayString = displayString.replace(replace, count);
@@ -328,7 +504,8 @@ class ShowMePage extends React.Component {
         displayCategories.push(
           {
             "category" : cat.Name,
-            "displayItems" : displayItems
+            "displayItems" : displayItems,
+            "total" : this.props.formatDollars((cat.ItemList.length * cat.Cost).toString())
           }
         )
       }
@@ -337,16 +514,22 @@ class ShowMePage extends React.Component {
 
     return (
       <div className="ShowMeScreen">
+        <div className="ShowMeTitle">FUNDED!</div>
         {displayCategories.map((c) => (
-          <div>
-            <div>{c.category}</div>
+          <div key={"showme_" + c.category}>
+            <div className="ShowMeCategoryContainer">
+              <div className="ShowMeCategory">{c.category}</div>
+              <div className="ShowMeCategoryTotal">{c.total}</div>
+            </div>
             <div>
               {c.displayItems.map((item) => (
-              <div>{item}</div>
+              <div className="ShowMeItem">{item}</div>
               ))}
             </div>
+          
           </div>
         ))}
+        <div className="ReturnToDefundButton" onClick={() => this.props.toggleShowMe()}>{this.props.data.UI.ReturnToDefundText}</div>
       </div>
     );
   }

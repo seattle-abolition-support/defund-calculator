@@ -30,8 +30,8 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Housing item 1 for #2# people.",
-                "Housing item 2 for #3# people."
+                "Housing item A for #10# people.",
+                "Housing item B for #20# people."
             ]
         },
         {
@@ -41,8 +41,8 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Education item 1 for #2# people.",
-                "Education item 2 for #3# people."
+                "Education item A for #15# people.",
+                "Education item B for #30# people."
             ]
         },
         {
@@ -52,8 +52,8 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "#1# year of Health item 1.",
-                "#1# year of Health item 2."
+                "#5# years of Health item A.",
+                "Health item B for #10# people."
             ]
         },
         {
@@ -63,8 +63,8 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Food item 1 for #2# families.",
-                "Food item 2 for #2# families."
+                "Food item A for #50# families.",
+                "Food item B for #100# families."
             ]
         },
         {
@@ -74,8 +74,8 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Childcare item 1 for #2# families.",
-                "Childcare item 2 for #4# families."
+                "Childcare item A for #10# families.",
+                "Childcare item B for #20# families."
             ]
         }
     ],
@@ -89,6 +89,7 @@
         "AboutText" : "ABOUT",
         "CategoriesUnlockedText" : "You took money from the absurdly huge police budget. Click the plus sign to fund community-based Participatory Budgeting initiatives!",
         "FundedText" : "You funded ",
-        "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund."
+        "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund.",
+        "ReturnToDefundText" : "DEFUND MORE POLICE!"
     }
 }
