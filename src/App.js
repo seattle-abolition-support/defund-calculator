@@ -234,11 +234,12 @@ export default class App extends React.Component {
       
 
     <div className="App">
-      {this.state.showMe ? 
-        <ShowMePage data={this.state.data} formatDollars={this.formatDollars} toggleShowMe={this.toggleShowMe}/> : null
-      }
+      
 
       <div className="Main">
+        {this.state.showMe ? 
+          <ShowMePage data={this.state.data} formatDollars={this.formatDollars} toggleShowMe={this.toggleShowMe}/> : null
+        }
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
           {this.state.data.DefundButtons.map((b, index) => (

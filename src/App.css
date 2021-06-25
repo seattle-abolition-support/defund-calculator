@@ -9,17 +9,17 @@
 
 .App {
   text-align: center;
-  font-size: 4.5vmin;
-  line-height: 5vmin;
+  font-size: calc(1em + .85vh);
+  line-height: calc(.85em + .85vh);
   user-select: none;
   font-family: Baloo2;
+  position:relative;
 }
 
 .Main {
   display: flex;
   flex-direction: column;
   background-color: #FCE826;
-  aspect-ratio: 9 / 16;
 }
 .MainTitle {
   background-color: #39B54A;
@@ -44,7 +44,7 @@
   display: flex;
   flex-direction: column;
   background-color: #C9C9C9;
-  aspect-ratio: 4 / 2;
+  height: 50vmin;
   position: relative;
   z-index: 0;
   overflow: "hidden";
@@ -270,10 +270,11 @@ background-color: #39688E;
   position: absolute;
   display: flex;
   flex-direction: column;
-  left: 0;
-  top: 0;
+  left: 0px;
+  top: 0px;
   width: 100%;
   height: 100%;
+  bottom: 0px;
   z-index: 100;
 }
 .ShowMeTitle {
