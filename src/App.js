@@ -48,7 +48,7 @@ export default class App extends React.Component {
       gameFundCount: 0
     };
 
-    console.log("isMobile: " + isMobile);
+    console.log("isMobile!: " + isMobile);
     this.recalculateBudgets();
     
   }
@@ -243,7 +243,7 @@ export default class App extends React.Component {
       {this.state.showMe ? 
           <ShowMePage data={this.state.data} formatDollars={this.formatDollars} toggleShowMe={this.toggleShowMe}/> : null
       }
-      <div className="Main">
+      <div className="Main" style={(isMobile) ? "" : {width: "500px"}}>
         
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
