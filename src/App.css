@@ -14,12 +14,16 @@
   user-select: none;
   font-family: Baloo2;
   position:relative;
+  background-color: #444342;
 }
 
 .Main {
   display: flex;
   flex-direction: column;
   background-color: #FCE826;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
 }
 .MainTitle {
   background-color: #39B54A;
@@ -34,9 +38,9 @@
 .DefundButton {
   background-color: #00AEEF;
   width: 20%;
-  border-radius: .5vmin;
-  margin: 1vmin;
-  padding: 1vmin;
+  border-radius: .5vh;
+  margin: 1vh;
+  padding: .5vh;
   filter: drop-shadow(.5vmin .5vmin 0px #43449C); 
 }
 
@@ -81,7 +85,7 @@ background-color: #39688E;
   right: 0;
   z-index: 1;
   
-  border-width:.5vmin; 
+  border-width:.5vh; 
   border-style:solid;
   border-color: #C1BC05;
 }
@@ -89,7 +93,7 @@ background-color: #39688E;
 .StatusTextBox {
   background-color: #FFFF99;
   display: table-cell;
-  height: 15vmin;
+  height: 10vh;
   vertical-align: middle;
 }
 
@@ -100,7 +104,7 @@ background-color: #39688E;
 
 .AvailableTextBox {
   color: #000000;
-  padding: .5vmin;
+  padding: .5vh;
 }
 
 .AllocateButtonDiv {
@@ -114,8 +118,8 @@ background-color: #39688E;
   border-radius: 1vmin;
   margin-left: 5%;
   margin-right: 5%;
-  margin-top: 1vmin;
-  margin-bottom: 1vmin;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .AllocateButton {
@@ -125,11 +129,11 @@ background-color: #39688E;
   display: grid;
   justify-self: center;
   align-items: center;
-  width: 7.5vmin;
-  height: 7.5vmin;
-  border-radius: .5vmin;
-  margin: 1vmin;
-  padding: .5vmin;
+  width: 5.5vh;
+  height: 5.5vh;
+  border-radius: .5vh;
+  margin: 1vh;
+  padding: .5vh;
 }
 
 .AllocateButtonDisabled {
@@ -139,11 +143,11 @@ background-color: #39688E;
   display: grid;
   justify-self: center;
   align-items: center;
-  width: 7.5vmin;
-  height: 7.5vmin;
-  border-radius: .5vmin;
-  margin: 1vmin;
-  padding: .5vmin;
+  width: 5.5vh;
+  height: 5.5vh;
+  border-radius: .5vh;
+  margin: 1vh;
+  padding: .5vh;
 }
 
 
@@ -158,12 +162,12 @@ background-color: #39688E;
   
   display: flex;
   justify-content: space-between;
-  border-radius: .5vmin;
+  border-radius: .5vh;
   margin-left: 3%;
   margin-right: 3%;
-  margin-top: 1.5vmin;
-  margin-bottom: 1.5vmin;
-  padding: 2vmin;
+  margin-top: .5vh;
+  margin-bottom: .5vh;
+  padding: 1vh;
   filter: drop-shadow(.5vmin .5vmin 0px #469B52); 
 }
 
@@ -172,12 +176,12 @@ background-color: #39688E;
   color: #DDC624;
   display: flex;
   justify-content: space-between;
-  border-radius: .5vmin;
+  border-radius: .5vh;
   margin-left: 3%;
   margin-right: 3%;
-  margin-top: 1.5vmin;
-  margin-bottom: 1.5vmin;
-  padding: 2vmin;
+  margin-top: .5vh;
+  margin-bottom: .5vh;
+  padding: 1vh;
   filter: drop-shadow(.5vmin .5vmin 0px #DDC624); 
 }
 

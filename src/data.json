@@ -90,6 +90,7 @@
         "CategoriesUnlockedText" : "You took money from the absurdly huge police budget. Click the plus sign to fund community-based Participatory Budgeting initiatives!",
         "FundedText" : "You funded ",
         "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund.",
-        "ReturnToDefundText" : "DEFUND MORE POLICE!"
+        "ReturnToDefundText" : "DEFUND MORE POLICE!",
+        "CopPhrases" : ["Who protects us? We protect us!", "Police don't reduce crime."]
     }
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import { isMobile } from 'mobile-device-detect';
+
 import Data from "./data.json";
 import LittleCheckMark from "./images/interface stuff/little-check-mark.svg"
 import LittleShield from "./images/interface stuff/little-shield.svg"
@@ -46,7 +48,7 @@ export default class App extends React.Component {
       gameFundCount: 0
     };
 
-    
+    console.log("isMobile: " + isMobile);
     this.recalculateBudgets();
     
   }
@@ -107,14 +109,15 @@ export default class App extends React.Component {
 
     let gameDefundCount = 0;
     for(var i = 0; i < d.DefundButtons.length; i++){
-      if(c == parseInt(d.DefundButtons[i].Number)) {
+      if(c === parseInt(d.DefundButtons[i].Number)) {
         gameDefundCount = i + 1;
       }
     }
 
     this.setState((state, props) => ({
       data : d,
-      gameDefundCount : gameDefundCount
+      gameDefundCount : gameDefundCount,
+      statusMessage : d.UI.CopPhrases[Math.floor(Math.random() * d.UI.CopPhrases.length)]
     }), () => this.recalculateBudgets());
 
 
@@ -143,13 +146,15 @@ export default class App extends React.Component {
     let updated = false;
     let gameFundCount = 0;
 
-    if(n > 0 && this.state.data.AvailableCommunityBudget >= this.state.selectedCategory.Cost) {
-      let item = Math.floor(Math.random() * d.Categories[idx].Items.length);
-      console.log("item: " + item + " " + d.Categories[idx].Items[item]);
-      d.Categories[idx].ItemList.push(item);
-      message = d.UI.FundedText + d.Categories[idx].Items[item].replaceAll("#","");
-      updated = true;
-      gameFundCount = 1;
+    if(n > 0) {
+      if(this.state.data.AvailableCommunityBudget >= this.state.selectedCategory.Cost) {
+        let item = Math.floor(Math.random() * d.Categories[idx].Items.length);
+        console.log("item: " + item + " " + d.Categories[idx].Items[item]);
+        d.Categories[idx].ItemList.push(item);
+        message = d.UI.FundedText + d.Categories[idx].Items[item].replaceAll("#","");
+        updated = true;
+        gameFundCount = 1;
+      }
     }
     else if(this.state.selectedCategory.ItemList.length > 0)
     {
@@ -184,7 +189,7 @@ export default class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.gameDefundCount != 0) {
+    if(this.state.gameDefundCount !== 0) {
       console.log("componentDidUpdate");
       console.log("gameDefundCount " + this.state.gameDefundCount);
       this.setState((state, props) => ({
@@ -235,11 +240,11 @@ export default class App extends React.Component {
 
     <div className="App">
       
-
-      <div className="Main">
-        {this.state.showMe ? 
+      {this.state.showMe ? 
           <ShowMePage data={this.state.data} formatDollars={this.formatDollars} toggleShowMe={this.toggleShowMe}/> : null
-        }
+      }
+      <div className="Main">
+        
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
           {this.state.data.DefundButtons.map((b, index) => (
@@ -401,7 +406,7 @@ class Game extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     console.log("game componentDidUpdate " + this.props.gameDefundCount);
     console.log(this.props);
-    if(prevProps.gameDefundCount == 0 && this.props.gameDefundCount != 0) {
+    if(prevProps.gameDefundCount === 0 && this.props.gameDefundCount !== 0) {
       
 
 
