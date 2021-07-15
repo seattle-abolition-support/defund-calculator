@@ -45,7 +45,8 @@ export default class App extends React.Component {
       categoriesUnlocked: false,
       showMe: false,
       gameDefundCount: 0,
-      gameFundCount: 0
+      gameFundCount: 0,
+      levelUp: 0
     };
 
     console.log("isMobile2: " + isMobile);
@@ -54,6 +55,7 @@ export default class App extends React.Component {
   }
   
 
+  // On every change, recalculate budgets
   recalculateBudgets = () =>  {
     console.log("recalculateBudgets");
     
@@ -61,52 +63,73 @@ export default class App extends React.Component {
     var d = this.state.data;
     var message = this.state.statusMessage;
 
+    // Get total allocated community budget. Items from all categories x comminityItemCost
     d.AllocatedCommunityBudget = 0;
-
     for (var i in d.Categories) {
       var cat = d.Categories[i];
-      cat.Total = cat.Cost * cat.ItemList.length;
+      cat.Total = d.CommunityItemCost * cat.ItemList.length;
       d.AllocatedCommunityBudget += cat.Total;
     }
     
+    // Calculate police and commuinity budget
     d.TotalPoliceBudget = d.StartOfficerCount * d.CostPerOfficer;
     d.CurrentPoliceBudget = d.CurrentOfficerCount * d.CostPerOfficer;
     d.TotalCommunityBudget = d.TotalPoliceBudget - d.CurrentPoliceBudget;
     d.AvailableCommunityBudget = d.TotalCommunityBudget - d.AllocatedCommunityBudget;
 
-    console.log("CategoriesUnlocked " + d.AvailableCommunityBudget + " " + this.state.selectedCategory.Cost);
+    // Unlock the category buttons when there's enough available community budget to buy something
+    console.log("CategoriesUnlocked " + d.AvailableCommunityBudget + " " + d.CommunityItemCost);
     let categoriesUnlocked = this.state.categoriesUnlocked;
-    if(d.AvailableCommunityBudget >= this.state.selectedCategory.Cost) {
+    if(d.AvailableCommunityBudget >= d.CommunityItemCost) {
       // If categories weren't unlocked, show the unlock message.
       if(! categoriesUnlocked){
-        message = d.UI.CategoriesUnlockedText
+        message = d.UI.CategoriesUnlockedText;
       }
       categoriesUnlocked = true;  
     }
+
+
+    // Level up when you have allocated LevelUpCount items. Multiplies allocations x LevelUpMultiplier
+    let levelUp = this.state.levelUp;
+    if(this.state.levelUp === 0){
+      console.log("Level Up Check " + (d.AllocatedCommunityBudget / d.CommunityItemCost) + " " + d.LevelUpCount);
+      if(d.AllocatedCommunityBudget / d.CommunityItemCost >= d.LevelUpCount) {
+        console.log("Level up");
+        levelUp = 1;
+        message = d.UI.LevelUpText;
+      }
+    }
     
+    // Set state. Update data, message, categoriesUnlocked, levelUp
     this.setState((state, props) => ({
       data: d,
       statusMessage: message,
-      categoriesUnlocked: categoriesUnlocked
+      categoriesUnlocked: categoriesUnlocked,
+      levelUp: levelUp
     }));
   }
 
 
 
+  // Defunc. c is the number to defund
   defund = (c) =>  {
     var d = this.state.data;
 
-    console.log("c: " + c);
-    console.log("CurrentOfficerCount: " + d.CurrentOfficerCount);
+    // Defund c officers
     d.CurrentOfficerCount = d.CurrentOfficerCount - c;
-    console.log("CurrentOfficerCount: " + d.CurrentOfficerCount);
+    //console.log("CurrentOfficerCount: " + d.CurrentOfficerCount);
 
+    // If zero officers left, victory!
     if(d.CurrentOfficerCount <= 0)
     {
+      // TBD
+      // Victory dialog
       d.CurrentOfficerCount = 0;
       // VICTORY!!!
     }
 
+    // Check to see which button has Number = c. Store the idx in gameDefundCount.
+    // gameDefundCount is passed to the game to trigger update type 1, 2, or 3.
     let gameDefundCount = 0;
     for(var i = 0; i < d.DefundButtons.length; i++){
       if(c === parseInt(d.DefundButtons[i].Number)) {
@@ -114,6 +137,7 @@ export default class App extends React.Component {
       }
     }
 
+    // Update the officer counts, gameDefundCount, and update the status message to a cop phrase
     this.setState((state, props) => ({
       data : d,
       gameDefundCount : gameDefundCount,
@@ -132,9 +156,12 @@ export default class App extends React.Component {
     }));
   }
 
+  // Allocate community funds. If n > 0, allocate. Else, deallocate
   allocate = (n) =>  {
     
     let d = this.state.data;
+
+    // Get the index of the currently selected category.
     let idx = 0
     for(var i in d.Categories) {
       if(d.Categories[i].Name === this.state.selectedCategory.Name) {
@@ -146,20 +173,66 @@ export default class App extends React.Component {
     let updated = false;
     let gameFundCount = 0;
 
+    // n > 0 means allocate
     if(n > 0) {
-      if(this.state.data.AvailableCommunityBudget >= this.state.selectedCategory.Cost) {
+      if(this.state.data.AvailableCommunityBudget >= this.state.data.CommunityItemCost) {
+
+        // Pick a random item from the selected category.
         let item = Math.floor(Math.random() * d.Categories[idx].Items.length);
-        console.log("item: " + item + " " + d.Categories[idx].Items[item]);
-        d.Categories[idx].ItemList.push(item);
-        message = d.UI.FundedText + d.Categories[idx].Items[item].replaceAll("#","");
+        //console.log("item: " + item + " " + d.Categories[idx].Items[item]);
+
+        if(this.state.levelUp === 0) {
+          // If not leveled up, just add one item
+          d.Categories[idx].ItemList.push(item);
+        } else {
+          // If leveled up, add LevelUpMultipler items
+          console.log("levelUp" + this.state.levelUp + " itemsToAdd: " + d.LevelUpMultiplier);
+          for(var count = 0; count < d.LevelUpMultiplier; count++) {
+            d.Categories[idx].ItemList.push(item);
+          }
+        }
+
+        // Kind of hack formatting for the item message. The quantity for the item is marked with #123#   
+        let itemText = d.Categories[idx].Items[item];
+        let re = /#(\d+)#/;
+        let m = itemText.match(re);
+        if(m) {
+          if(this.state.levelUp === 0) {
+            // If not leveled up, just use the digit
+            itemText = itemText.replace(m[0], m[1]);
+          } else {
+            // If leveled up, multiply the digit by 10
+            itemText = itemText.replace(m[0], (parseInt(m[1]) * 10).toString());
+          }
+        }
+        message = d.UI.FundedText + itemText;
+
+        // These are used for updating state after render.
         updated = true;
         gameFundCount = 1;
       }
     }
     else if(this.state.selectedCategory.ItemList.length > 0)
     {
-      d.Categories[idx].ItemList.pop();
+      // n < 1 means deallocate
+      console.log("in deallocate itemlist.length:" + d.Categories[idx].ItemList.length);
+      if(this.state.levelUp === 0) {
+        // If not leveled up, just remove one item
+        console.log("not leveled. itemlist.length: " + d.Categories[idx].ItemList.length);
+        d.Categories[idx].ItemList.pop();
+      } else {
+        console.log("leveled. ")
+        // If leveled up, add LevelUpMultipler items
+        for(var count = 0; count < d.LevelUpMultiplier; count++) {
+          if(d.Categories[idx].ItemList.length > 0) {
+            d.Categories[idx].ItemList.pop();
+          }
+        }
+      }
+      
       message = d.UI.DeallocateText;
+
+      // These are used for updating state after render.
       updated = true;
       gameFundCount = -1;
     }
@@ -190,16 +263,16 @@ export default class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.state.gameDefundCount !== 0) {
-      console.log("componentDidUpdate");
-      console.log("gameDefundCount " + this.state.gameDefundCount);
+      //console.log("componentDidUpdate");
+      //console.log("gameDefundCount " + this.state.gameDefundCount);
       this.setState((state, props) => ({
         gameDefundCount : 0
       }));
     }
 
     if(this.state.gameFundCount != 0) {
-      console.log("componentDidUpdate FUND");
-      console.log("gameFundCount " + this.state.gameFundCount);
+      //console.log("componentDidUpdate FUND");
+      //console.log("gameFundCount " + this.state.gameFundCount);
       this.setState((state, props) => ({
         gameFundCount : 0
       }));
@@ -209,7 +282,7 @@ export default class App extends React.Component {
 
   render() {
     console.log("in render");
-    console.log(this.state.data.UI.MainTitle);
+    //console.log(this.state.data.UI.MainTitle);
 
     let categoryButtonClass = "CategoryButton";
     let selectedCategoryClass = "CategoryButtonSelected";
@@ -223,7 +296,7 @@ export default class App extends React.Component {
       selectedCategoryClass = "CategoryButtonDisabled";
       allocateButtonClass = "AllocateButtonDisabled";
     }
-    if(this.state.data.AvailableCommunityBudget < this.state.selectedCategory.Cost) {
+    if(this.state.data.AvailableCommunityBudget < this.state.data.CommunityItemCost) {
       allocateButtonClass = "AllocateButtonDisabled";
     }
     if(this.state.selectedCategory.ItemList.length === 0) {
@@ -511,7 +584,7 @@ class ShowMePage extends React.Component {
           {
             "category" : cat.Name,
             "displayItems" : displayItems,
-            "total" : this.props.formatDollars((cat.ItemList.length * cat.Cost).toString())
+            "total" : this.props.formatDollars((cat.ItemList.length * d.CommunityItemCost).toString())
           }
         )
       }

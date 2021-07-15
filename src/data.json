@@ -6,8 +6,11 @@
     "TotalPoliceBudget": 0,
     "CurrentPoliceBudget": 0,
     "TotalCommunityBudget": 0,
+    "CommunityItemCost": 153000,
     "AllocatedCommunityBudget": 0,
     "AvailableCommunityBudget": 0,
+    "LevelUpCount": 10,
+    "LevelUpMultiplier": 10,
     "DefundButtons" : [
         {
             "Label" : "Officer",
@@ -26,7 +29,6 @@
         {
             "Name" : "HOUSING",
             "Description" : "The benefits of funding housing...",
-            "Cost" : 153000,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -37,7 +39,6 @@
         {
             "Name" : "EDUCATION",
             "Description" : "The benefits of funding education...",
-            "Cost" : 153000,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -48,7 +49,6 @@
         {
             "Name" : "HEALTH",
             "Description" : "The benefits of funding health...",
-            "Cost" : 153000,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -59,7 +59,6 @@
         {
             "Name" : "FOOD",
             "Description" : "The benefits of funding food...",
-            "Cost" : 153000,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -70,7 +69,6 @@
         {
             "Name" : "CHILDCARE",
             "Description" : "The benefits of funding childcare...",
-            "Cost" : 153000,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -84,6 +82,7 @@
     "UI" : {
         "MainTitle" : "DEFUND CALCULATOR",
         "AvailableBudgetText" : "Community has $BUDGET to spend.",
+        "LevelUpText" : "You've got the hang of it|Community budgeting now X 10!|Defund more police for more budget",
         "ShowMeText" : "SHOW ME WHAT I'VE FUNDED",
         "ResourcesText" : "RESOURCES",
         "AboutText" : "ABOUT",

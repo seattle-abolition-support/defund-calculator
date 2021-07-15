@@ -9,8 +9,8 @@
 
 .App {
   text-align: center;
-  font-size: calc(1em + .85vh);
-  line-height: calc(.85em + .85vh);
+  font-size: calc(1em + .75vh);
+  line-height: calc(.75em + .75vh);
   user-select: none;
   font-family: Baloo2;
   position:relative;
@@ -48,7 +48,7 @@
   display: flex;
   flex-direction: column;
   background-color: #C9C9C9;
-  height: 50vmin;
+  height: 30vh;
   position: relative;
   z-index: 0;
   overflow: "hidden";
