@@ -316,14 +316,14 @@ export default class App extends React.Component {
       {this.state.showMe ? 
           <ShowMePage data={this.state.data} formatDollars={this.formatDollars} toggleShowMe={this.toggleShowMe}/> : null
       }
-      <div className="Main" style={(isMobile) ? {} : {width: "500px"}}>
+      <div className="Main">
         
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
           {this.state.data.DefundButtons.map((b, index) => (
             <div className="DefundButton" onClick={() => this.defund(b.Number)}>
             <div>{b.Number}</div>
-            <div>{b.Label}</div>
+            <div class="officers">{b.Label}</div>
           </div>
           ))}
         </div>
@@ -357,7 +357,7 @@ export default class App extends React.Component {
               +
               </div>
               <div className={deallocateButtonClass} onClick={() => this.allocate(-1)}>
-              &#8212; 
+              &#8211; 
               </div>
           </div>
         </div>
