@@ -281,7 +281,7 @@ background-color: #39688E;
 .ShowMeTitle {
   color: #FDE92B;
   font-family: Baloo2;
-  font-size: 8vh;
+  font-size: 7vh;
   line-height:normal;
 }
 .ShowMeCategoryContainer {
@@ -311,6 +311,64 @@ background-color: #39688E;
   font-size: 2vh;
   line-height:normal;
 }
+
+.ResourcesScreen {
+  background-color: #D84889;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  z-index: 100;
+}
+
+.ResourceButton {
+  background-color: #F7E821;
+  color: #3968FF;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: .5vh;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: .5vh;
+  margin-bottom: 1.5vh;
+  padding: 1vh;
+  filter: drop-shadow(.5vmin .5vmin 0px #725B1C); 
+}
+
+.AboutScreen {
+  background-color: #D8B400;
+  color: #000000;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  z-index: 100;
+}
+
+.VictoryScreen {
+  background-color: #2E9E38;
+  color: #000000;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  z-index: 100;
+}
+
+.VictoryReturnButton {
+  background-color: #E28DDA;
+  color: #ffffff;
+  font-size: 3vh;
+  line-height:normal;
+  display: flex;
+  justify-content: center;
+  border-radius: .5vmin;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 5vh;
+  padding: 2vh;
+  filter: drop-shadow(.5vmin .5vmin 0px #965192); 
+}
+
+
 
 .ReturnToDefundButton {
   background-color: #2BB673;
