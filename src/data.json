@@ -81,7 +81,7 @@
     "InitStatusMessage" : "Defund police to free up dollars to invest in our communities.",
     "UI" : {
         "MainTitle" : "DEFUND CALCULATOR",
-        "AvailableBudgetText" : "Community has $BUDGET to spend.",
+        "AvailableBudgetText" : "Community has:",
         "LevelUpText" : "You've got the hang of it|Community budgeting now X 10!|Defund more police for more budget",
         "ShowMeText" : "SHOW ME WHAT I'VE FUNDED",
         "ResourcesText" : "RESOURCES",

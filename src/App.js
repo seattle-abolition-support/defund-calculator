@@ -8,7 +8,8 @@ import Data from "./data.json";
 import LittleCheckMark from "./images/interface stuff/little-check-mark.svg"
 import LittleShield from "./images/interface stuff/little-shield.svg"
 
-
+import VictoryRainbow from "./images/city stuff/rainbow.svg"
+import VictorySunWithFace from "./images/city stuff/sun-with-face.svg"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -230,7 +231,7 @@ export default class App extends React.Component {
   
 
   
-
+  // toggles the Show Me What I've Funded page
   toggleShowMe = () => {
     if(this.state.data.AllocatedCommunityBudget > 0) {
       this.setState((state, props) => ({
@@ -239,18 +240,22 @@ export default class App extends React.Component {
     }
   }
 
+
+  // toggles the Resources page
   toggleResources = () => {
     this.setState((state, props) => ({
       showResources : (! state.showResources)
     }));
   }
 
+  // toggles the About page
   toggleAbout = () => {
     this.setState((state, props) => ({
       showAbout : (! state.showAbout)
     }));
   }
 
+  // toggles the Victory page
   toggleVictory = () => {
     this.setState((state, props) => ({
       showVictory : (! state.showVictory)
@@ -325,14 +330,14 @@ export default class App extends React.Component {
       {this.state.showVictory ? 
           <VictoryPage data={this.state.data} toggleVictory={this.toggleVictory}/> : null
       }
-      <div className="Main" style={(isMobile) ? {} : {width: "500px"}}>
+      <div className="Main">
         
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
           {this.state.data.DefundButtons.map((b, index) => (
             <div className="DefundButton" onClick={() => this.defund(b.Number)}>
             <div>{b.Number}</div>
-            <div>{b.Label}</div>
+            <div class="officers">{b.Label}</div>
           </div>
           ))}
         </div>
@@ -359,14 +364,15 @@ export default class App extends React.Component {
         </div>
         <div className="MiddleContainer">
           <div className="AvailableTextBox">
-              {this.state.data.UI.AvailableBudgetText.replace("$BUDGET", this.formatDollars(this.state.data.AvailableCommunityBudget.toString()))}
+              {this.state.data.UI.AvailableBudgetText} <br/>
+              {this.formatDollars(this.state.data.AvailableCommunityBudget.toString())}
           </div>
           <div className="AllocateButtonDiv">
               <div className={allocateButtonClass} onClick={() => this.allocate(1)}>
               +
               </div>
               <div className={deallocateButtonClass} onClick={() => this.allocate(-1)}>
-              &#8212; 
+              &#8211; 
               </div>
           </div>
         </div>
@@ -531,10 +537,12 @@ class VictoryPage extends React.Component {
       <div className="VictoryScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
         <div className="ShowMeTitle">VICTORY!</div>
         <div>
+          <img src={VictorySunWithFace} alt="A sun with a face." style={{width: "75%"}}/>
           <p>CONGRATULATIONS!</p> 
           <p>YOU HAVE ABOLISHED THE SEATTLE POLICE DEPARTMENT!</p> 
           <p>JOIN THE EFFORT AT:</p>
           <p><a href="bit.ly/DefendTheDefund">bit.ly/DefendTheDefund</a></p>
+          <img src={VictoryRainbow} alt="A rainbow."  style={{width: "75%"}}/>
         </div>
         <div className="VictoryReturnButton" onClick={() => this.props.toggleVictory()}>{this.props.data.UI.VictoryReturnText}</div>
         
