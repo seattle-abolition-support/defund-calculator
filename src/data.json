@@ -81,7 +81,7 @@
     "InitStatusMessage" : "Defund police to free up dollars to invest in our communities.",
     "UI" : {
         "MainTitle" : "DEFUND CALCULATOR",
-        "AvailableBudgetText" : "Community has $BUDGET to spend.",
+        "AvailableBudgetText" : "Community has:",
         "LevelUpText" : "You've got the hang of it|Community budgeting now X 10!|Defund more police for more budget",
         "ShowMeText" : "SHOW ME WHAT I'VE FUNDED",
         "ResourcesText" : "RESOURCES",
@@ -90,6 +90,25 @@
         "FundedText" : "You funded ",
         "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund.",
         "ReturnToDefundText" : "DEFUND MORE POLICE!",
+        "VictoryReturnText" : "RETURN TO ALLOCATING THE COMMUNITY BUDGET",
         "CopPhrases" : ["Who protects us? We protect us!", "Police don't reduce crime."]
-    }
+    },
+    "Resources" : [
+        {
+            "LinkText" : "Resources link text A",
+            "LinkUrl" : "https://resource1"
+        },
+        {
+            "LinkText" : "Resources link text B",
+            "LinkUrl" : "https://resource1"
+        },
+        {
+            "LinkText" : "Resources link text C",
+            "LinkUrl" : "https://resource1"
+        },
+        {
+            "LinkText" : "Resources link text D",
+            "LinkUrl" : "https://resource1"
+        }
+    ]
 }
