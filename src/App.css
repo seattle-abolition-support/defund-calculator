@@ -381,6 +381,33 @@ background-color: #39688E;
   z-index: 100;
 }
 
+.EasterEggScreen {
+  background: url("./images/interface stuff/flower-wallpaper.svg");
+  color: #000000;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  z-index: 100;
+}
+
+.EasterEggTitle {
+  color: #2E3192;
+  font-family: Baloo2;
+  font-size: 7vh;
+  line-height:normal;
+  filter: drop-shadow(.5vmin .5vmin 0px #E28DDA);
+}
+
+.EasterEggText {
+  background-color: #8DC63F;
+  color: #ffffff;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 5vh;
+  padding: 2vh;
+  border-radius: .3em;
+}
+
 .VictoryScreen {
   background-color: #2E9E38;
   color: #000000;

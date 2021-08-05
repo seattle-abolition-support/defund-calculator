@@ -25,7 +25,10 @@ export default class App extends React.Component {
       gameDefundCount: 0,
       gameFundCount: 0,
       levelUp: 0,
-      showLevelUp: false
+      showLevelUp: false,
+      easterEggCount: 0,
+      showEasterEgg: false,
+      currentEasterEgg: 0
     };
 
     console.log("isMobile2: " + isMobile);
@@ -72,9 +75,9 @@ export default class App extends React.Component {
     let levelUp = this.state.levelUp;
     let showLevelUp = false;
     if(this.state.levelUp === 0){
-      console.log("Level Up Check " + (d.AllocatedCommunityBudget / d.CommunityItemCost) + " " + d.LevelUpCount);
+      //console.log("Level Up Check " + (d.AllocatedCommunityBudget / d.CommunityItemCost) + " " + d.LevelUpCount);
       if(d.AllocatedCommunityBudget / d.CommunityItemCost >= d.LevelUpCount) {
-        console.log("Level up");
+        //console.log("Level up");
         levelUp = 1;
         showLevelUp = true;
         message = d.UI.LevelUpText;
@@ -82,13 +85,31 @@ export default class App extends React.Component {
     }
 
     
+    // Show easter egg when you have allocated easterEggTarget times.
+    let showEasterEgg = this.state.showEasterEgg;
+    let easterEggCount = this.state.easterEggCount;
+    let currentEasterEgg = this.state.currentEasterEgg;
+    console.log("Easter egg check " + easterEggCount + " " + d.EasterEggInterval);
+    if(easterEggCount >= d.EasterEggInterval) {
+      console.log("Show easter egg!");
+      easterEggCount = 0;
+      currentEasterEgg = (currentEasterEgg + 1) % d.EasterEggs.length;
+      showEasterEgg = true;
+    } else
+    {
+      easterEggCount += 1;
+    }
+    
     // Set state. Update data, message, categoriesUnlocked, levelUp
     this.setState((state, props) => ({
       data: d,
       statusMessage: message,
       categoriesUnlocked: categoriesUnlocked,
       levelUp: levelUp,
-      showLevelUp: showLevelUp
+      showLevelUp: showLevelUp,
+      easterEggCount: easterEggCount,
+      showEasterEgg: showEasterEgg,
+      currentEasterEgg: currentEasterEgg
     }));
   }
 
@@ -269,6 +290,13 @@ export default class App extends React.Component {
     }));
   }
 
+  // toggles the Easter Egg page
+  toggleEasterEgg = () => {
+    this.setState((state, props) => ({
+      showEasterEgg : (! state.showEasterEgg),
+    }));
+  }
+
   formatDollars = (s) =>  {
     return "$" + s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -337,6 +365,10 @@ export default class App extends React.Component {
       {this.state.showVictory ? 
           <VictoryPage data={this.state.data} toggleVictory={this.toggleVictory}/> : null
       }
+      {this.state.showEasterEgg ? 
+          <EasterEggPage data={this.state.data} toggleEasterEgg={this.toggleEasterEgg} currentEasterEgg={this.state.currentEasterEgg}/> : null
+      }
+
       <div className="Main">
         
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
@@ -548,6 +580,31 @@ class VictoryPage extends React.Component {
           <img src={VictoryRainbow} alt="A rainbow."  style={{width: "75%"}}/>
         </div>
         <div className="VictoryReturnButton" onClick={() => this.props.toggleVictory()}>{this.props.data.UI.VictoryReturnText}</div>
+        
+      </div>
+    );
+  }
+}
+
+class EasterEggPage extends React.Component {
+  
+
+  render() {    
+    const d = this.props.data;
+    let egg = d.EasterEggs[this.props.currentEasterEgg];
+    console.log(d.EasterEggs);
+    console.log("egg: " + egg);
+    return (
+      <div className="EasterEggScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
+        <div className="EasterEggTitle">Easter Egg!</div>
+        
+        <div className="EasterEggText">
+          <p>{egg.Logo}</p>
+          {egg.Description}
+          <p><a href={egg.LinkUrl} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">{egg.LinkText}</a></p>
+        </div>
+        
+        <div className="ReturnToDefundButton" onClick={() => this.props.toggleEasterEgg()}>{this.props.data.UI.ReturnToDefundText}</div>
         
       </div>
     );
