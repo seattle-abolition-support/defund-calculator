@@ -25,7 +25,8 @@ export default class App extends React.Component {
       showVictory: false,
       gameDefundCount: 0,
       gameFundCount: 0,
-      levelUp: 0
+      levelUp: 0,
+      showLevelUp: false
     };
 
     console.log("isMobile2: " + isMobile);
@@ -70,11 +71,13 @@ export default class App extends React.Component {
 
     // Level up when you have allocated LevelUpCount items. Multiplies allocations x LevelUpMultiplier
     let levelUp = this.state.levelUp;
+    let showLevelUp = false;
     if(this.state.levelUp === 0){
       console.log("Level Up Check " + (d.AllocatedCommunityBudget / d.CommunityItemCost) + " " + d.LevelUpCount);
       if(d.AllocatedCommunityBudget / d.CommunityItemCost >= d.LevelUpCount) {
         console.log("Level up");
         levelUp = 1;
+        showLevelUp = true;
         message = d.UI.LevelUpText;
       }
     }
@@ -85,7 +88,8 @@ export default class App extends React.Component {
       data: d,
       statusMessage: message,
       categoriesUnlocked: categoriesUnlocked,
-      levelUp: levelUp
+      levelUp: levelUp,
+      showLevelUp: showLevelUp
     }));
   }
 
@@ -206,7 +210,7 @@ export default class App extends React.Component {
       } else {
         console.log("leveled. ")
         // If leveled up, add LevelUpMultipler items
-        for(var count = 0; count < d.LevelUpMultiplier; count++) {
+        for(var multiplier = 0; multiplier < d.LevelUpMultiplier; multiplier++) {
           if(d.Categories[idx].ItemList.length > 0) {
             d.Categories[idx].ItemList.pop();
           }
@@ -275,7 +279,7 @@ export default class App extends React.Component {
       }));
     }
 
-    if(this.state.gameFundCount != 0) {
+    if(this.state.gameFundCount !== 0) {
       //console.log("componentDidUpdate FUND");
       //console.log("gameFundCount " + this.state.gameFundCount);
       this.setState((state, props) => ({
@@ -337,7 +341,7 @@ export default class App extends React.Component {
           {this.state.data.DefundButtons.map((b, index) => (
             <div className="DefundButton" onClick={() => this.defund(b.Number)}>
             <div>{b.Number}</div>
-            <div class="officers">{b.Label}</div>
+            <div className="officers">{b.Label}</div>
           </div>
           ))}
         </div>
@@ -352,7 +356,7 @@ export default class App extends React.Component {
           <div> {this.state.data.ScreenMessage}</div>
           <div className="GameArea">
            
-            <Game gameDefundCount = {this.state.gameDefundCount} gameFundCount = {this.state.gameFundCount}/>
+            <Game gameDefundCount = {this.state.gameDefundCount} gameFundCount = {this.state.gameFundCount} showLevelUp = {this.state.showLevelUp}/>
           </div>
         </div>
         <div className="StatusTextBox">
@@ -488,7 +492,7 @@ class ResourcesPage extends React.Component {
       <div className="ResourcesScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
         <div className="ShowMeTitle">RESOURCES</div>
         {d.Resources.map((resource, index) => (
-          <a href={resource.LinkUrl} style={{textDecoration: "none"}} target="_blank">
+          <a href={resource.LinkUrl} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">
           <div key={"resources_" + index} className="ResourceButton">
               {resource.LinkText}        
           </div> 
@@ -504,9 +508,7 @@ class AboutPage extends React.Component {
   
 
   render() {    
-    const d = this.props.data;
-    
-
+    //const d = this.props.data;
 
     return (
       <div className="AboutScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
@@ -529,9 +531,7 @@ class VictoryPage extends React.Component {
   
 
   render() {    
-    const d = this.props.data;
-    
-
+    //const d = this.props.data;
 
     return (
       <div className="VictoryScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
