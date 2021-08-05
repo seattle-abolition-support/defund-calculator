@@ -9,8 +9,9 @@
     "CommunityItemCost": 153000,
     "AllocatedCommunityBudget": 0,
     "AvailableCommunityBudget": 0,
-    "LevelUpCount": 10,
+    "LevelUpCount": 20,
     "LevelUpMultiplier": 10,
+    "EasterEggInterval": 3,
     "DefundButtons" : [
         {
             "Label" : "Officer",
@@ -105,6 +106,15 @@
         {
             "LinkText" : "Resources link text D",
             "LinkUrl" : "https://resource1"
+        }
+    ],
+    "EasterEggs" : [
+        {
+            "Name" : "Rad Community Organization",
+            "Logo" : "Logo",
+            "Description" : "Description of the community organization",
+            "LinkText" : "Organization link text",
+            "LinkUrl" : "https://orglink"
         }
     ]
 }
