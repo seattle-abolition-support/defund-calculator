@@ -16,7 +16,6 @@ export default class App extends React.Component {
     super(props);
     this.state = { 
       data: Data,
-      selectedCategory: Data.Categories[0],
       statusMessage: Data.InitStatusMessage,
       categoriesUnlocked: false,
       showMe: false,
@@ -147,6 +146,10 @@ export default class App extends React.Component {
   allocate = (n) =>  {
     
     let d = this.state.data;
+
+    if(! this.state.selectedCategory) {
+      return;
+    }
 
     // Get the index of the currently selected category.
     let idx = 0
@@ -305,10 +308,10 @@ export default class App extends React.Component {
       selectedCategoryClass = "CategoryButtonDisabled";
       allocateButtonClass = "AllocateButtonDisabled";
     }
-    if(this.state.data.AvailableCommunityBudget < this.state.data.CommunityItemCost) {
+    if(!this.state.selectedCategory || this.state.data.AvailableCommunityBudget < this.state.data.CommunityItemCost) {
       allocateButtonClass = "AllocateButtonDisabled";
     }
-    if(this.state.selectedCategory.ItemList.length === 0) {
+    if(!this.state.selectedCategory || this.state.selectedCategory.ItemList.length === 0) {
       deallocateButtonClass = "AllocateButtonDisabled";
     }
     if(this.state.data.AllocatedCommunityBudget === 0) {

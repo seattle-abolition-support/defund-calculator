@@ -28,12 +28,12 @@
     "Categories" : [
         {
             "Name" : "HOUSING",
-            "Description" : "The benefits of funding housing...",
+            "Description" : "Research shows a majority of even the most impaired houseless people can be successfully housed if they are given access to permanent housing and voluntary supportive services",
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Housing item A for #10# people.",
-                "Housing item B for #20# people."
+                "A year of housing for #6# families.",
+                "Materials for #60# tiny homes."
             ]
         },
         {
@@ -42,8 +42,7 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Education item A for #15# people.",
-                "Education item B for #30# people."
+                "A year of preschool for #8# kids."
             ]
         },
         {
@@ -52,8 +51,7 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "#5# years of Health item A.",
-                "Health item B for #10# people."
+                "A year of health care for #90# adults."
             ]
         },
         {
@@ -62,18 +60,16 @@
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Food item A for #50# families.",
-                "Food item B for #100# families."
+                "A year of food for #43# families."
             ]
         },
         {
-            "Name" : "CHILDCARE",
+            "Name" : "TRANSPORTATION",
             "Description" : "The benefits of funding childcare...",
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
-                "Childcare item A for #10# families.",
-                "Childcare item B for #20# families."
+                "A year of transportation costs for #92# people."
             ]
         }
     ],
@@ -87,7 +83,7 @@
         "ResourcesText" : "RESOURCES",
         "AboutText" : "ABOUT",
         "CategoriesUnlockedText" : "You took money from the absurdly huge police budget. Click the plus sign to fund community-based Participatory Budgeting initiatives!",
-        "FundedText" : "You funded ",
+        "FundedText" : "You funded: ",
         "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund.",
         "ReturnToDefundText" : "DEFUND MORE POLICE!",
         "VictoryReturnText" : "RETURN TO ALLOCATING THE COMMUNITY BUDGET",
