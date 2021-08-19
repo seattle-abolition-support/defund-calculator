@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { isMobile } from 'mobile-device-detect';
+import { isMobile } from 'mobile-device-detect'
 
 import Game from './Game'
 
@@ -157,9 +157,23 @@ export default class App extends React.Component {
   
 
   selectCategory = (cat) =>  {
+    let d = this.state.data;
+    let idx = 0;
+    for(var i = 0; i < d.Categories.length; i++){
+      if(d.Categories[i].Name === cat.Name) {
+        idx = i;
+        break;
+      }
+    }
+    console.log("categoryIdx: " + idx);
+
+    let message = cat.Messages[cat.CurrentMessage]
+    d.Categories[idx].CurrentMessage = (d.Categories[idx].CurrentMessage + 1) % d.Categories[idx].Messages.length;
+
     this.setState((state, props) => ({
       selectedCategory : cat,
-      statusMessage : cat.Description
+      statusMessage : message,
+      data: d
     }));
   }
 
@@ -527,12 +541,14 @@ class ResourcesPage extends React.Component {
       <div className="ResourcesScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
         <div className="ShowMeTitle">RESOURCES</div>
         {d.Resources.map((resource, index) => (
-          <a href={resource.LinkUrl} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">
           <div key={"resources_" + index} className="ResourceButton">
-              {resource.LinkText}        
+              <p key={"resourceTitle_" + index}>{resource.Title}</p>     
+              {resource.Links.map((link, linkindex) => (
+                <p key={"resourcelink_" + index + "_" + linkindex} className="ResourceLink" ><a href={link.Url} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">{link.Text}</a></p>
+              ))}   
           </div> 
-          </a>
         ))}
+
         <div className="ReturnToDefundButton" onClick={() => this.props.toggleResources()}>{this.props.data.UI.ReturnToDefundText}</div>
       </div>
     );
@@ -596,14 +612,17 @@ class EasterEggPage extends React.Component {
     console.log("egg: " + egg);
     return (
       <div className="EasterEggScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
-        <div className="EasterEggTitle">Easter Egg!</div>
+        <div className="EasterEggTitle">{d.UI.EasterEggTitle}</div>
         
         <div className="EasterEggText">
+          <p>{d.UI.EasterEggText}</p>
           <p>{egg.Logo}</p>
           {egg.Description}
-          <p><a href={egg.LinkUrl} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">{egg.LinkText}</a></p>
+          {egg.Links.map((link, index) => (
+            <p><a href={link.Url} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">{link.Text}</a></p>
+          ))}
         </div>
-        
+        <link rel="import" href={process.env.PUBLIC_URL + '/resources.html'}/>
         <div className="ReturnToDefundButton" onClick={() => this.props.toggleEasterEgg()}>{this.props.data.UI.ReturnToDefundText}</div>
         
       </div>
