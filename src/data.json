@@ -11,7 +11,7 @@
     "AvailableCommunityBudget": 0,
     "LevelUpCount": 20,
     "LevelUpMultiplier": 10,
-    "EasterEggInterval": 15,
+    "EasterEggInterval": 3,
     "DefundButtons" : [
         {
             "Label" : "Officer",
@@ -29,7 +29,20 @@
     "Categories" : [
         {
             "Name" : "HOUSING",
-            "Description" : "Research shows a majority of even the most impaired houseless people can be successfully housed if they are given access to permanent housing and voluntary supportive services",
+            "Messages" : ["Access to permanent and adequate shelter is a basic human need.",
+                "Homelessness is linked to poor physical health for children including low birth weight, malnutrition, ear infections, exposure to environmental toxins and chronic illness (e.g., asthma).",
+                "Half of school age children experiencing homelessness struggle with depression and anxiety.",
+                "Schooling for children experiencing homelessness is often interrupted and delayed, and they are twice as likely to have a learning disability, repeat a grade or to be suspended from school.",
+                "Households of color have been disproportionately affected by this worsening housing security [during the COVID-19 pandemic], with Black and Hispanic or Latinx tenants more likely to be behind on their rent, be less confident about their ability to pay next month’s rent, and believe it is somewhat or very likely that they will be evicted in the next two months.",
+                "The homeownership rate amongst white Seattle residents is nearly double the rate for Black and Latinx residents.",
+                "A nationwide study on transgender discrimination found “an alarming 41% of Black [transgender] respondents reported experiencing homelessness at some point in their lives, over five times the rate of the general U.S. population.",
+                "There is a need for more Black-led residential and Black-led commercial spaces.",
+                "A person experiencing homeslessness is 5 times more likely to be admitted to the ER.",
+                "Residents of Permanent Supportive Housing report feeling better able to work, learn, build relationships, and understand themselves.",
+                "Costs on average are reduced by 49.5% when an individual experiencing chronic houselessness is given supportive housing.",
+                "On a single night in January 2020, there were 11,751 people experiencing homelessness on in Seattle/King County.",
+                "Compared to the overall population of Seattle/King County, homelessness disproportionately impacts BIPOC communities."],
+            "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -39,7 +52,8 @@
         },
         {
             "Name" : "EDUCATION",
-            "Description" : "The benefits of funding education...",
+            "Messages" : ["Early childhood education interventions can improve children’s development and act as a protective factor against the future onset of adult disease and disability."],
+            "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -48,7 +62,10 @@
         },
         {
             "Name" : "HEALTH",
-            "Description" : "The benefits of funding health...",
+            "Messages" : ["Findings from the Black Brilliance Project showed an urgent need for “investments in accessible and quality mental healthcare that supports more Black and Brown service providers leading services for more Black and Brown communities.",
+                "According to a research study by the Ingersoll Gender Center, 62% of trangender, non-binary, and gender non-conforming survey respondents say they “sometimes to always have difficulty paying for healthcare costs.",
+                "28% of Native Americans in Seattle do not have health insurance."],
+            "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -57,7 +74,11 @@
         },
         {
             "Name" : "FOOD",
-            "Description" : "The benefits of funding food...",
+            "Messages" : ["Babies who receive enough nutrition while in the womb appear to show higher cognitive performance in later childhood.",
+                "Too little energy, protein and nutrients during the first 3 years of a child’s life can lead to lasting deficits in cognitive, social and emotional development",
+                "Hunger reduces a child’s motor skills, activity level and motivation to explore the environment.",
+                "In Seattle public schools, over 1/3rd of students were eligible for free/reduced meals during the 2019-2020 school year."],
+            "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
@@ -66,11 +87,27 @@
         },
         {
             "Name" : "TRANSPORTATION",
-            "Description" : "The benefits of funding childcare...",
+            "Messages" : ["The benefits of funding childcare..."],
+            "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
             "Items" : [
                 "A year of transportation costs for #92# people."
+            ]
+        },
+        {
+            "Name" : "CHILDCARE",
+            "Messages" : ["Child care is a critical family need, allowing parents to work while keeping children safe and supporting their healthy development.",
+                "A recent study found the cost of childcare has increased 55% in Washington state during the COVID-19 pandemic.",
+                "Washington households put about 14% of their income on average toward childcare.",
+                "In 2019, it cost $1,625 per month to have an infant in a licensed childcare center in King County.",
+                "Childcare] subsidies also help parents remain in the workforce, thus boosting their lifetime earnings and improving their long-term financial health."
+                ],
+            "CurrentMessage" : 0,
+            "Total" : 0,
+            "ItemList" : [],
+            "Items" : [
+                "A year of childcare costs for #8# infants."
             ]
         }
     ],
@@ -88,33 +125,104 @@
         "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund.",
         "ReturnToDefundText" : "DEFUND MORE POLICE!",
         "VictoryReturnText" : "RETURN TO ALLOCATING THE COMMUNITY BUDGET",
-        "CopPhrases" : ["Who protects us? We protect us!", "Police don't reduce crime."]
+        "CopPhrases" : ["Who protects us? We protect us!", "Police don't reduce crime."],
+        "EasterEggTitle" : "Easter Egg!",
+        "EasterEggText" : "Check out this organization doing great work in our community"
     },
     "Resources" : [
         {
-            "LinkText" : "Resources link text A",
-            "LinkUrl" : "https://resource1"
+            "Title" : "What is Participatory Budgeting?",
+            "Links" : [
+                {"Text": "Participatory Budgeting Project", "Url": "https://www.participatorybudgeting.org/what-is-pb/"},
+                {"Text": "Seattle PB Teach-in 1/14/21", "Url": "https://www.youtube.com/watch?v=7AXHd5h9Z2Q&feature=youtu.be"}
+            ] 
+            
         },
         {
-            "LinkText" : "Resources link text B",
-            "LinkUrl" : "https://resource1"
+            "Title" : "The Black Brilliance Research Group laid out the roadmap to Participatory Budgeting in Seattle.",
+            "Links" : [
+                {"Text": "The Black Brilliance Research Group", "Url": "eztree.me/BlackBrillianceResearch"},
+                {"Text": "Black Brilliance Research Preliminary Report (includes Participatory Budgeting Roadmap)", "Url": "https://drive.google.com/file/d/1hJZH_9ja08il-1qx-sKyJ4etEEX3aQ5h/view?usp=sharing"},
+                {"Text": "Black Brilliance Research Podcast", "Url": "https://www.youtube.com/playlist?list=PLyAYJ4bCbHnPatxa-JnCOGoEAdBCnrU9w"},
+                {"Text": "Seattle Participatory Budgeting Podcast", "Url": "https://www.youtube.com/playlist?list=PL3L6TSACsZHzE6b0U_PHBW4l-bya6CKKq"},
+                {"Text": "BBR final presentation to Council  2/26/21 (video)", "Url": "https://www.seattlechannel.org/videos?videoid=x123878"},
+                {"Text": "BBR final report to City Council  2/26/21  (1292 pages)", "Url": "https://seattle.legistar.com/View.ashx?M=F&ID=9210619&GUID=CA0CF864-7944-4FDF-9EDC-64FC53CA3C46"}
+            ] 
+            
         },
         {
-            "LinkText" : "Resources link text C",
-            "LinkUrl" : "https://resource1"
+            "Title" : "Abolition 101",
+            "Links" : [
+                {"Text": "Nikkita Oliver’s free 15-week course on Abolition", "Url": "https://www.nikkitaoliver.com/abolition-15-week-course"},
+                {"Text": "Abolition Journal Study Guide", "Url": "https://abolitionjournal.org/studyguide/"},
+                {"Text": "Critical Resistance - What is the PIC? What is Abolition?", "Url": "http://criticalresistance.org/about/not-so-common-language/"},
+                {"Text": "Abolition for the People - Level / Medium", "Url": "https://level.medium.com/abolition-for-the-people-397ef29e3ca5"},
+                {"Text": "'So You’re Thinking About Becoming an Abolitionist',  by Mariame Kaba", "Url": "https://level.medium.com/so-youre-thinking-about-becoming-an-abolitionist-a436f8e31894"}
+            ] 
+            
         },
         {
-            "LinkText" : "Resources link text D",
-            "LinkUrl" : "https://resource1"
+            "Title" : "Why Defund the police?",
+            "Links" : [
+                {"Text": "'What Divesting From Seattle Police is Really About', by Angélica Cházaro", "Url": "https://crosscut.com/opinion/2020/10/what-divesting-seattle-police-really-about"},
+                {"Text": "'Cops Don’t Stop Violence' - Interrupting Criminalization & Community Resource Hub", "Url": "https://static1.squarespace.com/static/5ee39ec764dbd7179cf1243c/t/60ff3d8f0a0ef6473fbb6dbb/1627340186125/Cops+Don%27t+Stop+Violence"}
+            ] 
+            
+        },
+        {
+            "Title" : "Learn where we are in the Defund Movement in Seattle and beyond",
+            "Links" : [
+                {"Text": "State of the Defund Event, 4/10/21", "Url": "https://www.facebook.com/decrimseattle/videos/480227566446988"},
+                {"Text": "Austin Justice Coalition", "Url": "https://austinjustice.org/"}
+            ] 
+            
+        },
+        {
+            "Title" : "Get Involved with Abolitionist efforts in Seattle",
+            "Links" : [
+                {"Text": "Seattle Abolition Support", "Url": "https://seattleabolitionsupport.substack.com/"},
+                {"Text": "Follow @DecrimSeattle", "Url": "https://www.instagram.com/decrimseattle"},
+                {"Text": "Follow @blackactioncoalition", "Url": "https://www.instagram.com/blackactioncoalition"},
+                {"Text": "Follow @seattlepb_outreach", "Url": "https://www.instagram.com/seattlepb_outreach"}
+            ] 
+            
+        },
+        {
+            "Title" : "Get inspired: Community-led safety initiatives",
+            "Links" : [
+                {"Text": "Online zine: millionexperiments.com", "Url": "https://millionexperiments.com/"},
+                {"Text": "Interrupting Criminalization", "Url": "https://www.interruptingcriminalization.com"},
+                {"Text": "The Silent Task Force", "Url": "https://www.thesilenttaskforce.org/mission-statement.html"}
+            ] 
+            
         }
     ],
     "EasterEggs" : [
         {
-            "Name" : "Rad Community Organization",
+            "Name" : "Sacred Community Connections",
             "Logo" : "Logo",
-            "Description" : "Description of the community organization",
-            "LinkText" : "Organization link text",
-            "LinkUrl" : "https://orglink"
+            "Description" : "Sacred Community Connections or SCC is made up of folks who are currently/have been houseless, substance dependent, sex worker/street hustlers and black queer/trans folks. We know that we will only be cared for and truly supported by us so we started an organization that provides care, resources, friendship, case management, mutual aid, conflict/crisis prevention/response and wellness classes to us. We believe that when the systems that govern our lives have failed us it is because they didn’t have a true life understanding of what we were going through. We aim to be the organization we were/have looked for in the past.",
+            "Links" : [
+                {"Text" : "Sacred Community Connections on Facebook", "Url" : "https://orglink"}
+            ]
+        },
+        {
+            "Name" : "Queer the Land",
+            "Logo" : "Logo",
+            "Description" : "Queer The Land is a collaborative project grounded in the self-determination of queer, transgender, and Two-Spirit Black/ indigenous/ people of color (QT2BIPOC) and the vision of collectively owning our land and labor. Founded in Summer 2016 by two local QT2BIPOC community-based organizations, Building Autonomy and Safety for Everybody and the Queer & Trans Pan-African Exchange, we’re working to establish a cooperative network anchored by a community center and transitional and semi-permanent housing that meets the needs of working-class QT2BIPOC in the greater Seattle area.",
+            "Links" : [
+                { "Text" : "queertheland.org",  "Url" : "https://queertheland.org/"}
+            ]
+        },
+        {
+            "Name" : "Puentes",
+            "Logo" : "Logo",
+            "Description" : "Puentes mobilizes mental health resources to help undocumented migrants and their families cope and flourish despite our broken immigration system. They create innovating therapeutic spaces to promote social healing, the recovery of social agency, and engage community members to work towards immigration justice in the US.",
+            "Links" : [
+                { "Text" : "www.puentesseattle.org",  "Url" : "http://www.puentesseattle.org/"},
+                { "Text" : "Puentes on Facebook",  "Url" : "https://www.facebook.com/puentesseattle"},
+                { "Text" : "Puentes on Twitter",  "Url" : "https://twitter.com/PuentesSeattle"}
+            ]
         }
     ]
 }

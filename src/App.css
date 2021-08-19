@@ -130,13 +130,13 @@ background-color: #39688E;
 .StatusTextBox {
   font-family:'Myriad';
   color:#333;
-  line-height:1.4;
+  line-height:1.2;
   background-color: #FFFF99;
   display: table-cell;
-  height: 4em;
+  height: 5em;
   vertical-align: middle;
   text-align:left;
-  padding:1em;
+  padding:.2em 1em 0em 1em;
 }
 
 .MiddleContainer {
@@ -290,6 +290,16 @@ background-color: #39688E;
   margin: 0;
   -webkit-box-shadow: 4px 4px 0px 1px #995996; 
   box-shadow: 5px 5px 0px 0px #995996;
+}
+
+.ResourceLink {
+  color: #0000ff;
+  font-size:100%;
+  font-weight:normal;
+  margin: 0px;
+  padding: 0em 0em .75em 0em;
+  line-height: 1.1;
+  
 }
 
 .AboutButton {
