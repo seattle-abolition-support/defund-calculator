@@ -87,7 +87,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #C9C9C9;
-  height: 14em;
+  height: 17em;
   position: relative;
   z-index: 0;
   overflow: "hidden";
