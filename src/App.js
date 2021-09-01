@@ -3,6 +3,7 @@ import './App.css';
 import { isMobile } from 'mobile-device-detect'
 
 import Game from './Game'
+import BudgetCounter from './BudgetCounter'
 
 import Data from "./data.json";
 import LittleCheckMark from "./images/interface stuff/little-check-mark.svg"
@@ -418,7 +419,7 @@ export default class App extends React.Component {
         <div className="MiddleContainer">
           <div className="AvailableTextBox">
               {this.state.data.UI.AvailableBudgetText} <br/>
-              {this.formatDollars(this.state.data.AvailableCommunityBudget.toString())}
+              $<BudgetCounter budget={this.state.data.AvailableCommunityBudget}/>
           </div>
           <div className="AllocateButtonDiv">
               <div className={allocateButtonClass} onClick={() => this.allocate(1)}>

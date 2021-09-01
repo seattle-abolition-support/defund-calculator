@@ -11,7 +11,7 @@
     "AvailableCommunityBudget": 0,
     "LevelUpCount": 20,
     "LevelUpMultiplier": 10,
-    "EasterEggInterval": 3,
+    "EasterEggInterval": 50,
     "DefundButtons" : [
         {
             "Label" : "Officer",
