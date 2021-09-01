@@ -101,6 +101,8 @@ class Game extends React.Component {
             dir = "-1";
             zIndex = "-1";
             break;
+          default:
+            break;
         }
 
         let progress = (i % 5) / 5.0;

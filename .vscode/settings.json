@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/ae8f4a31-0dba-455e-a6e7-f027d64ff73c/resourceGroups/defund-resource-group/providers/Microsoft.Web/sites/defund-calculator",
+    "appService.deploySubpath": "."
+}
