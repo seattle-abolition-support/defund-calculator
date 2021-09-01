@@ -1,10 +1,8 @@
-import React, {useEffect, useState, useRef} from 'react';
-import { useSpring, animated, useSpringRef, useChain, config } from '@react-spring/web'
+import React, {useEffect} from 'react';
+import { useSpring, animated} from '@react-spring/web'
 
 
 const CopSprite = (props) => {
-    const [init, updateInit] = useState(true);
-    const [dismissed, updateDismissed] = useState(false);
 
     const [styles,set] = useSpring(() => ({
         

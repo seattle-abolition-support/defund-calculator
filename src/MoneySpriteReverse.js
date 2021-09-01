@@ -1,9 +1,9 @@
-import React, {useEffect, useState, useRef} from 'react';
-import { useSpring, animated, useSpringRef, useChain, config } from '@react-spring/web'
+import React from 'react';
+import { useSpring, animated } from '@react-spring/web'
 
 const MoneySpriteReverse = (props) => {
     
-    const [styles,set] = useSpring(() => ({
+    const [styles] = useSpring(() => ({
 
             from: { left: "10%", bottom: "-50%", width: "10%", },
             to: [{opacity: 1, left: "40%", bottom: props.bottom, width: "25%", }, {opacity: 0, left: "40%", bottom: props.bottom, onRest: () => {console.log("MONEY AT REST"); props.moneySpriteFinished(props.idx);}}],
