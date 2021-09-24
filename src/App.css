@@ -135,8 +135,8 @@ background-color: #39688E;
   display: table-cell;
   height: 5em;
   vertical-align: middle;
-  text-align:left;
-  padding: 0em 1em 0em 1em;
+  text-align:center;
+  padding: .25em .25em .25em .25em;
 }
 
 .MiddleContainer {

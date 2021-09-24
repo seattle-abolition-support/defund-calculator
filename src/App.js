@@ -351,7 +351,13 @@ export default class App extends React.Component {
       selectedCategoryClass = "CategoryButtonDisabled";
       allocateButtonClass = "AllocateButtonDisabled";
     }
-    if(!this.state.selectedCategory || this.state.data.AvailableCommunityBudget < this.state.data.CommunityItemCost) {
+
+    let minRequiredBudget = this.state.data.CommunityItemCost;
+    if(this.state.levelUp === 1) {
+      minRequiredBudget *= this.state.data.LevelUpMultiplier;
+    }
+
+    if(!this.state.selectedCategory || this.state.data.AvailableCommunityBudget < minRequiredBudget) {
       allocateButtonClass = "AllocateButtonDisabled";
     }
     if(!this.state.selectedCategory || this.state.selectedCategory.ItemList.length === 0) {
@@ -406,7 +412,11 @@ export default class App extends React.Component {
           <div> {this.state.data.ScreenMessage}</div>
           <div className="GameArea">
            
-            <Game gameDefundCount = {this.state.gameDefundCount} gameFundCount = {this.state.gameFundCount} showLevelUp = {this.state.showLevelUp}/>
+            <Game gameDefundCount = {this.state.gameDefundCount} 
+              gameFundCount = {this.state.gameFundCount} 
+              showLevelUp = {this.state.showLevelUp} 
+              selectedCategory = {this.state.selectedCategory}
+              />
           </div>
         </div>
         <div className="StatusTextBox">

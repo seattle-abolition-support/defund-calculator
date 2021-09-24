@@ -16,23 +16,27 @@ import Helicopter from "./images/cop stuff/helicopter.svg"
 // import Vest from "./images/cop stuff/vest.svg"
 // import WalkieTalkie from "./images/cop stuff/walkie-talkie.svg"
 
-import Carrot from "./images/city stuff/carrot.svg"
+
 import MoneyWithWings from "./images/city stuff/money-with-wings.svg"
+
+import TownHouses from "./images/city stuff/town-houses.svg"
+import Teacher from "./images/city stuff/male-teacher-dark-skin.svg"
+import MedicalWorker from "./images/city stuff/health-worker-woman-dark-skin.svg"
+import RedApple from "./images/city stuff/red-apple.svg"
+import Carrot from "./images/city stuff/carrot.svg"
+import Bicycle from "./images/city stuff/bicycle.svg"
+import PersonFeedingBaby from "./images/city stuff/person-feeding-baby.svg"
+
 // import Crayon from "./images/city stuff/crayon.svg"
-// import MedicalWorker from "./images/city stuff/medical-worker.svg"
-// import PrideFlag from "./images/city stuff/pride-flag.svg"
-// import Rainbow from "./images/city stuff/rainbow.svg"
-// import RedApple from "./images/city stuff/red-apple.svg"
+// 
+import PrideFlag from "./images/city stuff/pride-flag.svg"
+import Rainbow from "./images/city stuff/rainbow.svg"
+import Tulip from "./images/city stuff/tulip.svg"
 // import SunWithFace from "./images/city stuff/sun-with-face.svg"
-// import TownHouses from "./images/city stuff/town-houses.svg"
-// import Tulip from "./images/city stuff/tulip.svg"
+// 
+// 
 // import WhiteCloud from "./images/city stuff/white-cloud.svg"
 
-// import Skyline0 from "./images/city stuff/skyline0.svg"
-// import Skyline1 from "./images/city stuff/skyline1.svg"
-// import Skyline2 from "./images/city stuff/skyline2.svg"
-// import Skyline3 from "./images/city stuff/skyline3.svg"
-// import Skyline4 from "./images/city stuff/skyline4.svg"
 
 import LevelUpImage from "./images/interface stuff/level-up.svg"
 
@@ -50,6 +54,17 @@ let cityProgressImages = [];
 for(var i in tempProgressImages) {
   cityProgressImages.push(tempProgressImages[i].default);
 }
+
+const cityImages = {
+  "HOUSING" : [TownHouses],
+  "EDUCATION" : [Teacher],
+  "HEALTH" : [MedicalWorker],
+  "FOOD" : [RedApple, Carrot],
+  "TRANSPORTATION" : [Bicycle],
+  "CHILDCARE" : [PersonFeedingBaby],
+  "DEFAULT" : [PrideFlag, Rainbow, Tulip]
+}
+
 
 
 class Game extends React.Component {
@@ -204,6 +219,7 @@ class Game extends React.Component {
       console.log("game componentDidUpdate " + this.props.gameDefundCount);
       console.log(this.props);
       console.log("copIdx: " + this.state.copIdx);
+
       // If gameDefundCount was 0 but isn't now, pop cop data
       if(prevProps.gameDefundCount === 0 && this.props.gameDefundCount !== 0) {
 
@@ -211,10 +227,28 @@ class Game extends React.Component {
           var copIdx = this.state.spriteData[Math.floor(Math.random() * this.state.spriteData.length)].idx
 
 
-          console.log("Setting cop idx");
+          console.log("Setting cop idx / launching money");
+
+
+          let newMoneySpriteData = this.state.moneySpriteData;
+          let newMoneyIdx = this.state.moneyIdx;
+          newMoneySpriteData.push(
+            {
+              idx: this.state.moneyIdx,
+              bottom: "40%",
+              image: MoneyWithWings,
+              type: "Money"
+            }
+            
+          );
+          newMoneyIdx = newMoneyIdx + 1;
+
+
           this.setState((state, props) => ({
             //copIdx: this.state.copIdx + 1
-            copIdx: copIdx
+            copIdx: copIdx,
+            moneySpriteData : newMoneySpriteData,
+            moneyIdx: newMoneyIdx
           }));
         }
       }
@@ -234,7 +268,7 @@ class Game extends React.Component {
         newMoneySpriteData.push(
           {
             idx: this.state.moneyIdx,
-            bottom: "50%",
+            bottom: "40%",
             image: MoneyWithWings,
             type: "reverseMoney"
           }
@@ -242,12 +276,12 @@ class Game extends React.Component {
         );
 
         newMoneyIdx = newMoneyIdx + 1;
-
+        let image = this.getCityImage();
         newMoneySpriteData.push(
           {
             idx: newMoneyIdx,
-            bottom: "50%",
-            image: Carrot,
+            bottom: "40%",
+            image: image,
             type: "citySprite"
           }
           
@@ -278,24 +312,12 @@ class Game extends React.Component {
         }
       }
 
-      let newMoneySpriteData = this.state.moneySpriteData;
-      let newMoneyIdx = this.state.moneyIdx;
-      newMoneySpriteData.push(
-        {
-          idx: this.state.moneyIdx,
-          bottom: "50%",
-          image: MoneyWithWings,
-          type: "Money"
-        }
-        
-      );
-
-      newMoneyIdx = newMoneyIdx + 1;
+      
+      
 
       this.setState((state, props) => ({
         spriteData : newSpriteData,
-        moneySpriteData : newMoneySpriteData,
-        moneyIdx: newMoneyIdx
+        
       }));
     }
 
@@ -318,41 +340,18 @@ class Game extends React.Component {
 
     }
 
-    defundCops = (count) => {
 
-      
+  
+    getCityImage = () => {
+      console.log("getCityImage: " + this.props.selectedCategory.Name);
 
-    }
-  
-    getNewCityItem = () => {
-  
-  
-      
-  
-      
-      // let zHack = (this.state.cityData.length % this.state.zLayerCount);
-      // console.log("zHack: " + zHack);
-      // console.log("state.cityLayers: " + this.state.cityLayers);
-      // let layerImages = this.state.cityLayers[zHack];
-      // let layerIdx = Math.floor(Math.random() * layerImages.length)
-      // let imgIdx = layerImages[layerIdx];
-      // let img = this.state.cityImages[imgIdx];
-      // //let img = this.state.cityImages[Math.floor(Math.random() * this.state.cityImages.length)];
-
-      // let x = Math.floor(Math.random() * 90);
-      // let y = 90 * (zHack / this.state.zLayerCount); // skyline images use 40. trying to make city stuff go higher
-      
-      // //let z = Math.floor(100 * (zHack + Math.random()));
-      // let skylineZ = Math.floor(100 * (this.state.zLayerCount - zHack)); // same as above for skyline z: 100 per layer
-      // let zindex = skylineZ + Math.floor(Math.random() * 99); // random between layers
-  
-      // return {
-      //     img: img,
-      //     x: x,
-      //     y: y,
-      //     zindex: zindex,
-      //     scale: 10
-      //   };
+      let categoryName = "DEFAULT"
+      if(cityImages[this.props.selectedCategory.Name]) {
+        categoryName = this.props.selectedCategory.Name
+      }
+      let count = cityImages[categoryName].length
+      let idx = Math.floor(Math.random() * count);
+      return cityImages[categoryName][idx];
     }
   }
 
