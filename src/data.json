@@ -29,19 +29,34 @@
     "Categories" : [
         {
             "Name" : "HOUSING",
-            "Messages" : ["Access to permanent and adequate shelter is a basic human need.",
-                "Homelessness is linked to poor physical health for children including low birth weight, malnutrition, ear infections, exposure to environmental toxins and chronic illness (e.g., asthma).",
-                "Half of school age children experiencing homelessness struggle with depression and anxiety.",
-                "Schooling for children experiencing homelessness is often interrupted and delayed, and they are twice as likely to have a learning disability, repeat a grade or to be suspended from school.",
-                "Households of color are disproportionately affected by worsening housing security.",
-                "The homeownership rate amongst white Seattle residents is nearly double the rate for Black and Latinx residents.",
-                "A nationwide study found “an alarming 41% of Black [transgender] respondents reported experiencing homelessness at some point in their lives, over five times the rate of the general U.S. population.",
-                "There is a need for more Black-led residential and Black-led commercial spaces.",
-                "A person experiencing homeslessness is 5 times more likely to be admitted to the ER.",
-                "Residents of Permanent Supportive Housing report feeling better able to work, learn, build relationships, and understand themselves.",
-                "Costs on average are reduced by 49.5% when an individual experiencing chronic houselessness is given supportive housing.",
-                "On a single night in January 2020, there were 11,751 people experiencing homelessness on in Seattle/King County.",
-                "Compared to the overall population of Seattle/King County, homelessness disproportionately impacts BIPOC communities."],
+            "Messages" : [
+                { "Text": "Access to permanent and adequate shelter is a basic human need.",
+                    "Citation": "https://www.apa.org/pi/families/poverty"},
+                { "Text": "Homelessness is linked to poor physical health for children including low birth weight, malnutrition, ear infections, exposure to environmental toxins and chronic illness (e.g., asthma).",
+                    "Citation": "https://www.apa.org/pi/families/poverty"},
+                { "Text": "Half of school age children experiencing homelessness struggle with depression and anxiety.",
+                    "Citation": "https://www.apa.org/pi/families/poverty"},
+                { "Text": "Schooling for children experiencing homelessness is often interrupted and delayed, and they are twice as likely to have a learning disability, repeat a grade or to be suspended from school.",
+                    "Citation": "https://www.apa.org/pi/families/poverty"},
+                { "Text": "Households of color are disproportionately affected by worsening housing security.",
+                    "Citation": "'The Impact of the COVID-19 Pandemic on Low-Income Tenants’ Housing Security in Washington State'" },
+                { "Text": "The homeownership rate amongst white Seattle residents is nearly double the rate for Black and Latinx residents.",
+                    "Citation": "Prosperity Now 2021 - https://prosperitynow.org/sites/default/files/Racial%20Wealth%20Divide_%20Profile_Seattle_FINAL_3.2.21.pdf"},
+                { "Text": "A nationwide study found “an alarming 41% of Black [transgender] respondents reported experiencing homelessness at some point in their lives, over five times the rate of the general U.S. population.",
+                    "Citation": "https://www.thetaskforce.org/wp-content/uploads/2019/04/Injustice-at-Every-Turn-2009.pdf"},
+                { "Text": "There is a need for more Black-led residential and Black-led commercial spaces.",
+                    "Citation": "Black Brilliance Research Report - https://eztree.me/BBRreport"},
+                { "Text": "A person experiencing homeslessness is 5 times more likely to be admitted to the ER.",
+                    "Citation": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3419187"},
+                { "Text": "Residents of Permanent Supportive Housing report feeling better able to work, learn, build relationships, and understand themselves.",
+                    "Citation": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3419187"},
+                { "Text": "Costs on average are reduced by 49.5% when an individual experiencing chronic houselessness is given supportive housing.",
+                    "Citation": "http://endhomelessness.org/wp-content/uploads/2017/06/Cost-Savings-from-PSH.pdf"},
+                { "Text": "On a single night in January 2020, there were 11,751 people experiencing homelessness on in Seattle/King County.",
+                    "Citation": "https://kcrha.org/wp-content/uploads/2020/07/Count-Us-In-2020-Final_7.29.2020.pdf"},
+                { "Text": "Compared to the overall population of Seattle/King County, homelessness disproportionately impacts BIPOC communities.",
+                    "Citation": "https://kcrha.org/wp-content/uploads/2020/07/Count-Us-In-2020-Final_7.29.2020.pdf"}
+            ],
             "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
@@ -52,7 +67,9 @@
         },
         {
             "Name" : "EDUCATION",
-            "Messages" : ["Early childhood education interventions can improve children’s development and act as a protective factor against the future onset of adult disease and disability."],
+            "Messages" : [
+                { "Text": "Early childhood education interventions can improve children’s development and act as a protective factor against the future onset of adult disease and disability."}
+            ],
             "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
@@ -62,9 +79,10 @@
         },
         {
             "Name" : "HEALTH",
-            "Messages" : ["The Black Brilliance Project documented an urgent need for “investments in accessible and quality mental healthcare that supports more Black and Brown service providers leading services for more Black and Brown communities.",
-                "According to a research study by the Ingersoll Gender Center, 62% of trangender, non-binary, and gender non-conforming survey respondents say they “sometimes to always have difficulty paying for healthcare costs.",
-                "28% of Native Americans in Seattle do not have health insurance."],
+            "Messages" : [{ "Text": "The Black Brilliance Project documented an urgent need for “investments in accessible and quality mental healthcare that supports more Black and Brown service providers leading services for more Black and Brown communities."},
+                { "Text": "According to a research study by the Ingersoll Gender Center, 62% of trangender, non-binary, and gender non-conforming survey respondents say they “sometimes to always have difficulty paying for healthcare costs."},
+                { "Text": "28% of Native Americans in Seattle do not have health insurance."}
+            ],
             "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
@@ -74,10 +92,12 @@
         },
         {
             "Name" : "FOOD",
-            "Messages" : ["Babies who receive enough nutrition while in the womb appear to show higher cognitive performance in later childhood.",
-                "Too little energy, protein and nutrients during the first 3 years of a child’s life can lead to lasting deficits in cognitive, social and emotional development",
-                "Hunger reduces a child’s motor skills, activity level and motivation to explore the environment.",
-                "In Seattle public schools, over 1/3rd of students were eligible for free/reduced meals during the 2019-2020 school year."],
+            "Messages" : [
+                { "Text": "Babies who receive enough nutrition while in the womb appear to show higher cognitive performance in later childhood."},
+                { "Text": "Too little energy, protein and nutrients during the first 3 years of a child’s life can lead to lasting deficits in cognitive, social and emotional development"},
+                { "Text": "Hunger reduces a child’s motor skills, activity level and motivation to explore the environment."},
+                { "Text": "In Seattle public schools, over 1/3rd of students were eligible for free/reduced meals during the 2019-2020 school year."}
+            ],
             "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
@@ -87,7 +107,9 @@
         },
         {
             "Name" : "TRANSPORTATION",
-            "Messages" : ["The benefits of funding childcare..."],
+            "Messages" : [
+                { "Text" : "The benefits of funding childcare..."}
+            ],
             "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
@@ -97,12 +119,13 @@
         },
         {
             "Name" : "CHILDCARE",
-            "Messages" : ["Child care is a critical family need, allowing parents to work while keeping children safe and supporting their healthy development.",
-                "A recent study found the cost of childcare has increased 55% in Washington state during the COVID-19 pandemic.",
-                "Washington households put about 14% of their income on average toward childcare.",
-                "In 2019, it cost $1,625 per month to have an infant in a licensed childcare center in King County.",
-                "Childcare] subsidies also help parents remain in the workforce, thus boosting their lifetime earnings and improving their long-term financial health."
-                ],
+            "Messages" : [
+                { "Text" : "Child care is a critical family need, allowing parents to work while keeping children safe and supporting their healthy development."},
+                { "Text" : "A recent study found the cost of childcare has increased 55% in Washington state during the COVID-19 pandemic."},
+                { "Text" : "Washington households put about 14% of their income on average toward childcare."},
+                { "Text" : "In 2019, it cost $1,625 per month to have an infant in a licensed childcare center in King County."},
+                { "Text" : "Childcare subsidies also help parents remain in the workforce, thus boosting their lifetime earnings and improving their long-term financial health."}
+            ],
             "CurrentMessage" : 0,
             "Total" : 0,
             "ItemList" : [],
@@ -129,6 +152,59 @@
         "EasterEggTitle" : "Easter Egg!",
         "EasterEggText" : "Check out this organization doing great work in our community"
     },
+    "PoliceFacts" : [
+        { 
+            "Text" : "SPD uses more force against black people. 7% of Seattle's population is Black, yet 35%-42% of all people subject to SPD force are Black.",
+            "Citation" : "Center for Equity in Policing (2021). 'The Science of Justice.'"
+        },
+        { 
+            "Text" : "SPD uses more force against black youth. 7% of Seattle's population is Black, yet when SPD uses force on a 15-21 year old and race is identified, 59% are Black.",
+            "Citation" : "Center for Equity in Policing (2021). 'The Science of Justice.'"
+        },
+        { 
+            "Text" : "SPD's 2020 budget was 4 times the budget for Education and Early Learning.",
+            "Citation" : "ACLU (2020). 'Follow the Money'"
+        },
+        { 
+            "Text" : "SPD's 2020 budget was 28 times the budget for Arts and Culture.",
+            "Citation" : "ACLU (2020). 'Follow the Money'"
+        },
+        { 
+            "Text" : "SPD's 2020 budget was 62 times the budget for the Office of Civil Rights.",
+            "Citation" : "ACLU (2020). 'Follow the Money'"
+        },
+        { 
+            "Text" : "80% of SPD's calls for service are for non-criminal activity.",
+            "Citation" : "National Institute for Criminal Justice Reform (2021), 'Seattle Calls for Service Analysis'"
+        },
+        { 
+            "Text" : "Only 6% of SPD's calls for service are for felonys. Only 2% are for serious-violent felonies.",
+            "Citation" : "National Institute for Criminal Justice Reform (2021), 'Seattle Calls for Service Analysis'"
+        },
+        { 
+            "Text" : "50% of SPD calls could be answered with an alternative, non-sworn response.",
+            "Citation" : "National Institute for Criminal Justice Reform (2021), 'Seattle Calls for Service Analysis'"
+        },
+        { 
+            "Text" : "SPD spent 2.4 million hours responding to non-criminal events between 2017-2019. That's two-thirds of all officer response time.",
+            "Citation" : "National Institute for Criminal Justice Reform (2021), 'Seattle Calls for Service Analysis'"
+        }
+
+    ],
+    "PBFacts" : [
+        {
+            "Text" : "Every 10 additional community nonprofits in a city with 100,000 residents leads to a 6% reduction in the homicide rate.",
+            "Citation" : "Sharkey, P., Torrats-Espinosa, G., & Takyar, D. (2017). 'Community and the crime decline: The causal effect of local nonprofits on violent crime'. American Sociological Review, 82(6), 1214-1240, 1215."
+        },
+        {
+            "Text" : "Every 10 additional community nonprofits in a city with 100,000 residents leads to a 10% reduction in violent crime.",
+            "Citation" : "Sharkey, P., Torrats-Espinosa, G., & Takyar, D. (2017). 'Community and the crime decline: The causal effect of local nonprofits on violent crime'. American Sociological Review, 82(6), 1214-1240, 1215."
+        },
+        {
+            "Text" : "Every 10 additional community nonprofits in a city with 100,000 residents leads to a 7% reduction in the property crime rate",
+            "Citation" : "Sharkey, P., Torrats-Espinosa, G., & Takyar, D. (2017). 'Community and the crime decline: The causal effect of local nonprofits on violent crime'. American Sociological Review, 82(6), 1214-1240, 1215."
+        }
+    ],
     "Resources" : [
         {
             "Title" : "What is Participatory Budgeting?",

@@ -128,15 +128,18 @@ background-color: #39688E;
 }
 
 .StatusTextBox {
+  position: relative;
   font-family:'Myriad';
   color:#333;
   line-height:1.2;
   background-color: #FFFF99;
   display: table-cell;
   height: 5em;
+  padding: .25em .25em .25em .25em;
+}
+.StatusTextText {
   vertical-align: middle;
   text-align:center;
-  padding: .25em .25em .25em .25em;
 }
 
 .MiddleContainer {
@@ -386,9 +389,22 @@ background-color: #39688E;
   background-color: #D8B400;
   color: #000000;
   position: absolute;
+  max-width: 450px;
   top: 0px;
   bottom: 0px;
+  overflow: auto;
   z-index: 100;
+}
+
+.CitationContainer {
+  position: relative;
+  font-family:'Myriad';
+  margin-top: 3em;
+}
+.CitationDiv {
+  font-size:80%;
+  margin: 1em;
+  text-align: left;
 }
 
 .EasterEggScreen {
