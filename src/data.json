@@ -108,7 +108,10 @@
         {
             "Name" : "TRANSPORTATION",
             "Messages" : [
-                { "Text" : "The benefits of funding childcare..."}
+                { "Text" : "People of color have been largely left out of the benefits of the billions spent on transportation and bear a disproportionate share of the burdens.",
+                    "Citation" : "https://www.urban.org/features/unequal-commute"},
+                { "Text" : "Blacks and Latinos breathe 56/63% more pollution than they create.",
+                    "Citation" : "https://apnews.com/article/health-ap-top-news-air-pollution-hispanics-pollution-f6bf2f47c81c4958811dc4e99d526197"} 
             ],
             "CurrentMessage" : 0,
             "Total" : 0,
