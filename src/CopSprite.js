@@ -30,7 +30,8 @@ const CopSprite = (props) => {
         if(props.dismissed) {
           console.log("dismissed: ");
           console.log(props);
-          set({ to: { left: "40%", bottom: "%50", width: "30%", opacity: 1}, loop: false, config: {duration: 400},  onRest: () => {console.log("NEW AT REST"); props.copSpriteFinished(props.idx);}})
+          //set({ to: { left: "40%", bottom: "%50", width: "30%", opacity: 1}, loop: false, config: {duration: 400},  onRest: () => {console.log("NEW AT REST"); props.copSpriteFinished(props.idx);}})
+          set({ to: [{ left: "40%", bottom: "%40", width: "30%", opacity: 1},{opacity: 0}], loop: false, config: {duration: 400},  onRest: () => {console.log("NEW AT REST"); props.copSpriteFinished(props.idx);}})
         
 
             

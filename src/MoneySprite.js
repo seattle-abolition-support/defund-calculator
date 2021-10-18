@@ -9,6 +9,7 @@ const MoneySprite = (props) => {
             to: [{opacity: 1, left: "40%", bottom: props.bottom, width: "25%"}, {delay: 0, left: "10%", bottom: "-50%", config: {duration: 200}, onRest: () => {console.log("MONEY AT REST"); props.moneySpriteFinished(props.idx);}}],
             
             //config: {duration: 300},
+            delay: 300,
             config: config.wobbly
             
         }))

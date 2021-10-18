@@ -2,8 +2,10 @@ import React from 'react';
 import './App.css';
 import { isMobile } from 'mobile-device-detect'
 
+
 import Game from './Game'
 import BudgetCounter from './BudgetCounter'
+import AboutPage from './AboutPage'
 
 import Data from "./data.json";
 import LittleCheckMark from "./images/interface stuff/little-check-mark.svg"
@@ -18,6 +20,8 @@ export default class App extends React.Component {
     this.state = { 
       data: Data,
       statusMessage: Data.InitStatusMessage,
+      statusMessageCitation: "",
+      citationOn: false,
       categoriesUnlocked: false,
       showMe: false,
       showResources: false,
@@ -45,6 +49,7 @@ export default class App extends React.Component {
       
     var d = this.state.data;
     var message = this.state.statusMessage;
+    let messageCitation = this.state.statusMessageCitation;
 
     // Get total allocated community budget. Items from all categories x comminityItemCost
     d.AllocatedCommunityBudget = 0;
@@ -67,6 +72,7 @@ export default class App extends React.Component {
       // If categories weren't unlocked, show the unlock message.
       if(! categoriesUnlocked){
         message = d.UI.CategoriesUnlockedText;
+        messageCitation = "";
       }
       categoriesUnlocked = true;  
     }
@@ -82,6 +88,7 @@ export default class App extends React.Component {
         levelUp = 1;
         showLevelUp = true;
         message = d.UI.LevelUpText;
+        messageCitation = ""
       }
     }
 
@@ -105,6 +112,7 @@ export default class App extends React.Component {
     this.setState((state, props) => ({
       data: d,
       statusMessage: message,
+      statusMessageCitation: messageCitation,
       categoriesUnlocked: categoriesUnlocked,
       levelUp: levelUp,
       showLevelUp: showLevelUp,
@@ -144,11 +152,17 @@ export default class App extends React.Component {
       }
     }
 
+    let policeFactIdx = Math.floor(Math.random() * d.PoliceFacts.length);
+    let statusMessageText = d.PoliceFacts[policeFactIdx].Text;
+    let statusMessageCitation = (d.PoliceFacts[policeFactIdx].Citation) ? d.PoliceFacts[policeFactIdx].Citation : "";
+
     // Update the officer counts, gameDefundCount, and update the status message to a cop phrase
     this.setState((state, props) => ({
       data : d,
       gameDefundCount : gameDefundCount,
-      statusMessage : d.UI.CopPhrases[Math.floor(Math.random() * d.UI.CopPhrases.length)],
+      //statusMessage : d.UI.CopPhrases[Math.floor(Math.random() * d.UI.CopPhrases.length)],
+      statusMessage : statusMessageText,
+      statusMessageCitation : statusMessageCitation,
       showVictory: showVictory
     }), () => this.recalculateBudgets());
 
@@ -168,12 +182,17 @@ export default class App extends React.Component {
     }
     console.log("categoryIdx: " + idx);
 
-    let message = cat.Messages[cat.CurrentMessage]
+    let message = cat.Messages[cat.CurrentMessage].Text;
+    let messageCitation = "";
+    if (cat.Messages[cat.CurrentMessage].Citation) {
+      messageCitation = cat.Messages[cat.CurrentMessage].Citation;
+    }
     d.Categories[idx].CurrentMessage = (d.Categories[idx].CurrentMessage + 1) % d.Categories[idx].Messages.length;
 
     this.setState((state, props) => ({
       selectedCategory : cat,
       statusMessage : message,
+      statusMessageCitation: messageCitation,
       data: d
     }));
   }
@@ -196,6 +215,7 @@ export default class App extends React.Component {
     }
     
     let message = this.state.statusMessage;
+    let messageCitation = this.state.statusMessageCitation;
     let updated = false;
     let gameFundCount = 0;
 
@@ -232,6 +252,7 @@ export default class App extends React.Component {
           }
         }
         message = d.UI.FundedText + itemText;
+        messageCitation = "";
 
         // These are used for updating state after render.
         updated = true;
@@ -257,6 +278,7 @@ export default class App extends React.Component {
       }
       
       message = d.UI.DeallocateText;
+      messageCitation = "";
 
       // These are used for updating state after render.
       updated = true;
@@ -266,12 +288,23 @@ export default class App extends React.Component {
       this.setState((state, props) => ({
         data : d,
         statusMessage : message,
+        statusMessageCitation : messageCitation,
         gameFundCount : gameFundCount
       }), () => this.recalculateBudgets());
     }
   }
 
-  
+  // toggles the citation for a fact
+  toggleCitationOn  = () => {
+    this.setState((state, props) => ({
+      citationOn : true
+    }));
+  }
+  toggleCitationOff  = () => {
+    this.setState((state, props) => ({
+      citationOn : false
+    }));
+  }
 
   
   // toggles the Show Me What I've Funded page
@@ -351,7 +384,13 @@ export default class App extends React.Component {
       selectedCategoryClass = "CategoryButtonDisabled";
       allocateButtonClass = "AllocateButtonDisabled";
     }
-    if(!this.state.selectedCategory || this.state.data.AvailableCommunityBudget < this.state.data.CommunityItemCost) {
+
+    let minRequiredBudget = this.state.data.CommunityItemCost;
+    if(this.state.levelUp === 1) {
+      minRequiredBudget *= this.state.data.LevelUpMultiplier;
+    }
+
+    if(!this.state.selectedCategory || this.state.data.AvailableCommunityBudget < minRequiredBudget) {
       allocateButtonClass = "AllocateButtonDisabled";
     }
     if(!this.state.selectedCategory || this.state.selectedCategory.ItemList.length === 0) {
@@ -361,7 +400,8 @@ export default class App extends React.Component {
       showMeButtonClass = "ShowMeButtonDisabled";
     }
 
-    
+    console.log("CITATION: " + this.state.statusMessageCitation)
+
     return (
     
       
@@ -389,9 +429,9 @@ export default class App extends React.Component {
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
           {this.state.data.DefundButtons.map((b, index) => (
-            <div className="DefundButton" onClick={() => this.defund(b.Number)}>
-            <div>{b.Number}</div>
-            <div className="officers">{b.Label}</div>
+            <div className="DefundButton" onClick={() => this.defund(b.Number)} key={"DefendButton_" + index}>
+            <div key={"DefendNumber_" + index}>{b.Number}</div>
+            <div className="officers" key={"DefundOfficers_" + index}>{b.Label}</div>
           </div>
           ))}
         </div>
@@ -406,15 +446,34 @@ export default class App extends React.Component {
           <div> {this.state.data.ScreenMessage}</div>
           <div className="GameArea">
            
-            <Game gameDefundCount = {this.state.gameDefundCount} gameFundCount = {this.state.gameFundCount} showLevelUp = {this.state.showLevelUp}/>
+            <Game gameDefundCount = {this.state.gameDefundCount} 
+              gameFundCount = {this.state.gameFundCount} 
+              showLevelUp = {this.state.showLevelUp} 
+              selectedCategory = {this.state.selectedCategory}
+              />
           </div>
         </div>
         <div className="StatusTextBox">
-          {console.log(this.state.statusMessage.split("|"))}
+
+          { (!this.state.citationOn) ?
+          <div className="StatusTextText">
           {this.state.statusMessage.split("|").map((s, i) => (
             <div key={i}>{s}</div>
           ))}
-          
+          </div>
+          :
+          <div className="StatusTextText">
+          {"Source: " + this.state.statusMessageCitation}
+          </div>
+          }
+          { this.state.statusMessageCitation !== "" ? 
+          <div style={{position: "absolute", right : "5px", bottom: "0px", color : "#CCCC66" }} 
+            onMouseDown={() => this.toggleCitationOn()}
+            onMouseUp={() => this.toggleCitationOff()}
+            onMouseLeave={() => this.toggleCitationOff()}
+            >Source</div>
+          : null
+          }
         </div>
         <div className="MiddleContainer">
           <div className="AvailableTextBox">
@@ -516,8 +575,8 @@ class ShowMePage extends React.Component {
               <div className="ShowMeCategoryTotal">{c.total}</div>
             </div>
             <div>
-              {c.displayItems.map((item) => (
-              <div className="ShowMeItem">{item}</div>
+              {c.displayItems.map((item, index) => (
+              <div className="ShowMeItem" key={"ShowMeItem_" + index}>{item}</div>
               ))}
             </div>
           
@@ -556,28 +615,6 @@ class ResourcesPage extends React.Component {
   }
 }
 
-class AboutPage extends React.Component {
-  
-
-  render() {    
-    //const d = this.props.data;
-
-    return (
-      <div className="AboutScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
-        <div className="ShowMeTitle">ABOUT</div>
-        <div>
-          <p>Some text here about how we arrived at different amounts for police budget / police officer defunding, and sources of information.</p>
-          <p>Information on how PB works</p>
-          <p>(info graphic and/or video?)</p>
-          <p>Credits: Developed by PB Creators, Seattle Abolition Support / Defend the Defund</p>
-          <p><a href="mailto: something">EMAIL</a></p>
-        </div>
-        <div className="ReturnToDefundButton" onClick={() => this.props.toggleAbout()}>{this.props.data.UI.ReturnToDefundText}</div>
-        
-      </div>
-    );
-  }
-}
 
 class VictoryPage extends React.Component {
   
@@ -620,7 +657,7 @@ class EasterEggPage extends React.Component {
           <p>{egg.Logo}</p>
           {egg.Description}
           {egg.Links.map((link, index) => (
-            <p><a href={link.Url} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">{link.Text}</a></p>
+            <p><a href={link.Url} style={{textDecoration: "none"}} key={"LINK_" + index} target="_blank" rel="noreferrer">{link.Text}</a></p>
           ))}
         </div>
         <link rel="import" href={process.env.PUBLIC_URL + '/resources.html'}/>
