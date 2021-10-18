@@ -28,6 +28,7 @@ body {
   margin: 0;
   font-family: Baloo2;
   font-size:14pt;
+  background-color: #444342;
 }
 
 .Main {
@@ -321,10 +322,12 @@ background-color: #39688E;
 
 .ShowMeScreen {
   background-color: #000000;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  z-index: 100;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 
@@ -364,10 +367,12 @@ background-color: #39688E;
 
 .ResourcesScreen {
   background-color: #D84889;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  z-index: 100;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .ResourceButton {
@@ -388,12 +393,11 @@ background-color: #39688E;
 .AboutScreen {
   background-color: #D8B400;
   color: #000000;
-  position: absolute;
   max-width: 450px;
-  top: 0px;
-  bottom: 0px;
-  overflow: auto;
-  z-index: 100;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .CitationContainer {
@@ -410,10 +414,11 @@ background-color: #39688E;
 .EasterEggScreen {
   background: url("./images/interface stuff/flower-wallpaper.svg");
   color: #000000;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  z-index: 100;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .EasterEggTitle {
@@ -436,11 +441,12 @@ background-color: #39688E;
 
 .VictoryScreen {
   background-color: #2E9E38;
-  color: #000000;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  z-index: 100;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .VictoryReturnButton {
@@ -471,6 +477,7 @@ background-color: #39688E;
   margin-left: 3%;
   margin-right: 3%;
   margin-top: 5vh;
+  margin-bottom: 5vh;
   padding: 2vh;
   filter: drop-shadow(.5vmin .5vmin 0px #006838); 
 }

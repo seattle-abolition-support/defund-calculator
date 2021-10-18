@@ -6,13 +6,16 @@ import { isMobile } from 'mobile-device-detect'
 import Game from './Game'
 import BudgetCounter from './BudgetCounter'
 import AboutPage from './AboutPage'
+import ShowMePage from './ShowMePage'
+import ResourcesPage from './ResourcesPage'
+import VictoryPage from './VictoryPage'
+import EasterEggPage from './EasterEggPage'
 
 import Data from "./data.json";
 import LittleCheckMark from "./images/interface stuff/little-check-mark.svg"
 import LittleShield from "./images/interface stuff/little-shield.svg"
 
-import VictoryRainbow from "./images/city stuff/rainbow.svg"
-import VictorySunWithFace from "./images/city stuff/sun-with-face.svg"
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -400,7 +403,10 @@ export default class App extends React.Component {
       showMeButtonClass = "ShowMeButtonDisabled";
     }
 
-    console.log("CITATION: " + this.state.statusMessageCitation)
+    
+
+    let showMain = ! (this.state.showMe | this.state.showResources | this.state.showAbout | this.state.showVictory | this.state.showEasterEgg)
+    console.log("SHOWMAIN: " + showMain)
 
     return (
     
@@ -424,7 +430,9 @@ export default class App extends React.Component {
           <EasterEggPage data={this.state.data} toggleEasterEgg={this.toggleEasterEgg} currentEasterEgg={this.state.currentEasterEgg}/> : null
       }
 
-      <div className="Main">
+      
+      
+      <div className="Main" style={{display:(showMain) ? "flex" : "none"}} >
         
         <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
@@ -507,164 +515,39 @@ export default class App extends React.Component {
           </div>
         </div>
       </div>
-    </div>
+    </div> 
     );
   }
 }
 
 
-class ShowMePage extends React.Component {
+
+
+// class EasterEggPage extends React.Component {
   
 
-  render() {    
-    const d = this.props.data;
-    let displayCategories = [];
-
-    // Loop through each category
-    for(var i = 0; i < d.Categories.length; i++) {
-      var cat = d.Categories[i]
-      let displayItems = []
-
-      // Loop through each category item
-      for(var j = 0; j < cat.Items.length; j++) {
-
-        // function in a loop warning
-        //var result = cat.ItemList.filter((x) => x === j).length;
-        var result = 0;
-        for(var idx = 0; idx < cat.ItemList.length; idx++) {
-          result = (cat.ItemList[idx] === j) ? result + 1 : result;
-        }
+//   render() {    
+//     const d = this.props.data;
+//     let egg = d.EasterEggs[this.props.currentEasterEgg];
+//     console.log(d.EasterEggs);
+//     console.log("egg: " + egg);
+//     return (
+//       <div className="EasterEggScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
+//         <div className="EasterEggTitle">{d.UI.EasterEggTitle}</div>
         
+//         <div className="EasterEggText">
+//           <p>{d.UI.EasterEggText}</p>
+//           <p>{egg.Logo}</p>
+//           {egg.Description}
+//           {egg.Links.map((link, index) => (
+//             <p><a href={link.Url} style={{textDecoration: "none"}} key={"LINK_" + index} target="_blank" rel="noreferrer">{link.Text}</a></p>
+//           ))}
+//         </div>
+//         <link rel="import" href={process.env.PUBLIC_URL + '/resources.html'}/>
+//         <div className="ReturnToDefundButton" onClick={() => this.props.toggleEasterEgg()}>{this.props.data.UI.ReturnToDefundText}</div>
         
-
-        // If any items are allocated, add a display string
-        if(result > 0) {
-          var displayString = cat.Items[j]; 
-
-          var m = displayString.match("#(.+)#");
-          if(m) {
-
-            var replace = m[0]
-            var count = parseInt(m[1]) * result;
-            displayString = displayString.replace(replace, count);
-          }
-          displayItems.push(displayString);
-        }
-      }
-
-      // If there are display strings for the category, add them to the list to be displayed
-      if(displayItems.length > 0) {
-        displayCategories.push(
-          {
-            "category" : cat.Name,
-            "displayItems" : displayItems,
-            "total" : this.props.formatDollars((cat.ItemList.length * d.CommunityItemCost).toString())
-          }
-        )
-      }
-    }
-
-
-    return (
-      <div className="ShowMeScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
-        <div className="ShowMeTitle">FUNDED!</div>
-        {displayCategories.map((c) => (
-          <div key={"showme_" + c.category}>
-            <div className="ShowMeCategoryContainer">
-              <div className="ShowMeCategory">{c.category}</div>
-              <div className="ShowMeCategoryTotal">{c.total}</div>
-            </div>
-            <div>
-              {c.displayItems.map((item, index) => (
-              <div className="ShowMeItem" key={"ShowMeItem_" + index}>{item}</div>
-              ))}
-            </div>
-          
-          </div>
-        ))}
-        <div className="ReturnToDefundButton" onClick={() => this.props.toggleShowMe()}>{this.props.data.UI.ReturnToDefundText}</div>
-      </div>
-    );
-  }
-}
-
-
-class ResourcesPage extends React.Component {
-  
-
-  render() {    
-    const d = this.props.data;
-    
-
-
-    return (
-      <div className="ResourcesScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
-        <div className="ShowMeTitle">RESOURCES</div>
-        {d.Resources.map((resource, index) => (
-          <div key={"resources_" + index} className="ResourceButton">
-              <p key={"resourceTitle_" + index}>{resource.Title}</p>     
-              {resource.Links.map((link, linkindex) => (
-                <p key={"resourcelink_" + index + "_" + linkindex} className="ResourceLink" ><a href={link.Url} style={{textDecoration: "none"}} target="_blank" rel="noreferrer">{link.Text}</a></p>
-              ))}   
-          </div> 
-        ))}
-
-        <div className="ReturnToDefundButton" onClick={() => this.props.toggleResources()}>{this.props.data.UI.ReturnToDefundText}</div>
-      </div>
-    );
-  }
-}
-
-
-class VictoryPage extends React.Component {
-  
-
-  render() {    
-    //const d = this.props.data;
-
-    return (
-      <div className="VictoryScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
-        <div className="ShowMeTitle">VICTORY!</div>
-        <div>
-          <img src={VictorySunWithFace} alt="A sun with a face." style={{width: "75%"}}/>
-          <p>CONGRATULATIONS!</p> 
-          <p>YOU HAVE ABOLISHED THE SEATTLE POLICE DEPARTMENT!</p> 
-          <p>JOIN THE EFFORT AT:</p>
-          <p><a href="bit.ly/DefendTheDefund">bit.ly/DefendTheDefund</a></p>
-          <img src={VictoryRainbow} alt="A rainbow."  style={{width: "75%"}}/>
-        </div>
-        <div className="VictoryReturnButton" onClick={() => this.props.toggleVictory()}>{this.props.data.UI.VictoryReturnText}</div>
-        
-      </div>
-    );
-  }
-}
-
-class EasterEggPage extends React.Component {
-  
-
-  render() {    
-    const d = this.props.data;
-    let egg = d.EasterEggs[this.props.currentEasterEgg];
-    console.log(d.EasterEggs);
-    console.log("egg: " + egg);
-    return (
-      <div className="EasterEggScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
-        <div className="EasterEggTitle">{d.UI.EasterEggTitle}</div>
-        
-        <div className="EasterEggText">
-          <p>{d.UI.EasterEggText}</p>
-          <p>{egg.Logo}</p>
-          {egg.Description}
-          {egg.Links.map((link, index) => (
-            <p><a href={link.Url} style={{textDecoration: "none"}} key={"LINK_" + index} target="_blank" rel="noreferrer">{link.Text}</a></p>
-          ))}
-        </div>
-        <link rel="import" href={process.env.PUBLIC_URL + '/resources.html'}/>
-        <div className="ReturnToDefundButton" onClick={() => this.props.toggleEasterEgg()}>{this.props.data.UI.ReturnToDefundText}</div>
-        
-      </div>
-    );
-  }
-}
+//       </div>
+//     );
+//   }
+// }
 
