@@ -2,7 +2,6 @@
 import React from 'react';
 import './App.css';
 
-import { isMobile } from 'mobile-device-detect'
 
 class AboutPage extends React.Component {
   
@@ -11,7 +10,7 @@ class AboutPage extends React.Component {
         //const d = this.props.data;
 
         return (
-        <div className="AboutScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
+        <div className="AboutScreen" >
         
             <div className="ShowMeTitle">ABOUT</div>
             <div>
