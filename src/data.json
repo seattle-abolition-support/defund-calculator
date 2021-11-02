@@ -111,7 +111,15 @@
                 { "Text" : "People of color have been largely left out of the benefits of the billions spent on transportation and bear a disproportionate share of the burdens.",
                     "Citation" : "https://www.urban.org/features/unequal-commute"},
                 { "Text" : "Blacks and Latinos breathe 56/63% more pollution than they create.",
-                    "Citation" : "https://apnews.com/article/health-ap-top-news-air-pollution-hispanics-pollution-f6bf2f47c81c4958811dc4e99d526197"} 
+                    "Citation" : "https://apnews.com/article/health-ap-top-news-air-pollution-hispanics-pollution-f6bf2f47c81c4958811dc4e99d526197"},
+                { "Text" : "Shorter commute times correlate to higher upward mobility.",
+                    "Citation" : "https://scholar.harvard.edu/files/hendren/files/mobility_geo.pdf"},
+                { "Text" : "Commuting time has emerged as the single strongest factor in the odds of escaping poverty.",
+                    "Citation" : "https://www.nytimes.com/2015/05/07/upshot/transportation-emerges-as-crucial-to-escaping-poverty.html"},
+                { "Text" : "Nationally, Just 7 percent of white households do not own a car, compared with 24 percent of African-American households, 17 percent of Latino households, and 13 percent of Asian-American households.",
+                    "Citation": "https://escholarship.org/uc/item/5qc7w8qp#page-34"},
+                { "Text" : "in 2013, a review published in the Journal of Community Health found that around 25 percent of lower-income patients have missed or rescheduled medical appointments due to lack of transportation.",
+                    "Citation": "https://pubmed.ncbi.nlm.nih.gov/23543372/"}
             ],
             "CurrentMessage" : 0,
             "Total" : 0,
@@ -140,7 +148,7 @@
     "InitScreenMessage" : "Init screen",
     "InitStatusMessage" : "Defund police to free up dollars to invest in our communities.",
     "UI" : {
-        "MainTitle" : "DEFUND CALCULATOR",
+        "MainTitle" : "DEFUND THE POLICE",
         "AvailableBudgetText" : "Community has:",
         "LevelUpText" : "You've got the hang of it|Community budgeting now X 10!|Defund more police for more budget",
         "ShowMeText" : "SHOW ME WHAT I'VE FUNDED",
