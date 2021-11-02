@@ -79,65 +79,7 @@ class Game extends React.Component {
       let leftEnd = 100;
       let baseDuration = 3000;
 
-      // let spriteData = []
-      // for(var i = 0; i < 25; i++) {
-      //   let img = "";
-      //   let bottom = ""
-      //   let dir = ""
-      //   let zIndex = 0;
-
-      //   switch(Math.floor(i / 5)) {
-      //     case 0:
-      //       img = CopCar
-      //       bottom = "0%";
-      //       dir = "-1";
-      //       zIndex = -1;
-      //       break;
-      //     case 1:
-      //       img = (i % 2 === 0) ? Gun : Handcuffs
-      //       bottom = "20%"
-      //       dir = "1";
-      //       zIndex = "-2"
-      //       break;
-      //     case 2:
-      //         img = BigBadge;
-      //         bottom = "30%";
-      //         dir = "-1";
-      //         zIndex = "-3";
-      //         break;
-      //     case 3:
-      //       img =  (i % 2 === 0) ? Handcuffs : GasMask
-      //       bottom = "45%"
-      //       dir = "1";
-      //       zIndex = "-2"
-      //       break;          
-      //     case 4:
-      //       img = Helicopter
-      //       bottom = "70%"
-      //       dir = "-1";
-      //       zIndex = "-1";
-      //       break;
-      //     default:
-      //       break;
-      //   }
-
-      //   let progress = (i % 5) / 5.0;
-      //   let initialDuration = Math.floor((1 - progress) * baseDuration);
-
-      //   let dLeft = Math.floor((leftEnd - leftStart) * progress);
-      //   let initialLeft = (dir > 0) ? leftStart + dLeft : leftEnd - dLeft;  
-
-      //   spriteData.push({
-      //     image: img, 
-      //     bottom: bottom, 
-      //     zIndex: zIndex,
-      //     dir: dir, 
-      //     progress: progress, 
-      //     initialDuration: initialDuration,
-      //     initialLeft: initialLeft + "%",
-      //     idx: i
-      //   });
-      // }
+      
 
       let spriteData = this.GenerateCopSprites();
       let moneySpriteData = [];
