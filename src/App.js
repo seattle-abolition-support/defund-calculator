@@ -445,11 +445,11 @@ export default class App extends React.Component {
         </div>
         <div className="Screen">
           <div className="ScoreRow">
-            <div>{this.formatDollars(this.state.data.TotalCommunityBudget.toString())} <img src={LittleCheckMark} alt="A little check mark." /></div>
+            <div className="ScorePB">{this.formatDollars(this.state.data.TotalCommunityBudget.toString())}</div><div><img src={LittleCheckMark} alt="A little check mark." /></div>
             <div className="BudgetBar" style={{ gridTemplateColumns : this.state.data.TotalCommunityBudget + "fr " +  this.state.data.CurrentPoliceBudget + "fr"}}>
               <div className="GoodBar"/>
               <div className="BadBar"/></div>
-            <div><img src={LittleShield} alt="A little badge." /> {this.formatDollars(this.state.data.CurrentPoliceBudget.toString())}</div>
+            <div><img src={LittleShield} alt="A little badge." /></div><div className="ScorePD">{this.formatDollars(this.state.data.CurrentPoliceBudget.toString())}</div>
           </div>
           <div> {this.state.data.ScreenMessage}</div>
           <div className="GameArea">
