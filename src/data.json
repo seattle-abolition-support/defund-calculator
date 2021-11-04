@@ -157,7 +157,7 @@
         "CategoriesUnlockedText" : "You have defunded one police officer. Select one of the categories below to fund community-based Participatory Budgeting initiatives!",
         "FundedText" : "You funded: ",
         "DeallocateText" : "You have Participatory Budgeting funds to spend!|Select an area of community projects to fund.",
-        "ReturnToDefundText" : "DEFUND MORE POLICE!",
+        "ReturnToDefundText" : "BACK TO THE GAME",
         "VictoryReturnText" : "RETURN TO ALLOCATING THE COMMUNITY BUDGET",
         "CopPhrases" : ["Who protects us? We protect us!", "Police don't reduce crime."],
         "EasterEggTitle" : "Easter Egg!",
