@@ -434,7 +434,7 @@ export default class App extends React.Component {
       
       <div className="Main" style={{display:(showMain) ? "flex" : "none"}} >
         
-        <div className="MainTitle">{this.state.data.UI.MainTitle}</div>
+        <div className="MainTitle blueBackground">{this.state.data.UI.MainTitle}</div>
         <div className="DefundButtonDiv">
           {this.state.data.DefundButtons.map((b, index) => (
             <div className="DefundButton" onClick={() => this.defund(b.Number)} key={"DefendButton_" + index}>
@@ -483,6 +483,7 @@ export default class App extends React.Component {
           : null
           }
         </div>
+        <div className="MainTitle greenBackground">{this.state.data.UI.MainTitle2}</div>
         <div className="MiddleContainer">
           <div className="AvailableTextBox">
               {this.state.data.UI.AvailableBudgetText} <br/>
