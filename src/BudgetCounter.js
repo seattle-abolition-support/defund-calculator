@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSpring, animated } from '@react-spring/web'
-
+import {debugLog} from './DebugLog'
 
 
 const BudgetCounter = (props) => {
-    console.log("budget props")
-    console.log(props);
+    debugLog("budget props")
+    debugLog(props);
 
     const styles = useSpring({
 

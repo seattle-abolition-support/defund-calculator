@@ -1,8 +1,12 @@
 import React, {useEffect} from 'react';
 import { useSpring, animated} from '@react-spring/web'
-
+import {debugLog} from './DebugLog'
 
 const CopSprite = (props) => {
+
+    const {dismissed} = props;
+    const {copSpriteFinished} = props;
+    const {idx} = props;
 
     const [styles,set] = useSpring(() => ({
         
@@ -25,18 +29,16 @@ const CopSprite = (props) => {
 
     useEffect(() => {
         
-        console.log("in useEffect");
-       
-        if(props.dismissed) {
-          console.log("dismissed: ");
-          console.log(props);
-          //set({ to: { left: "40%", bottom: "%50", width: "30%", opacity: 1}, loop: false, config: {duration: 400},  onRest: () => {console.log("NEW AT REST"); props.copSpriteFinished(props.idx);}})
-          set({ to: [{ left: "40%", bottom: "%40", width: "30%", opacity: 1},{opacity: 0}], loop: false, config: {duration: 400},  onRest: () => {console.log("NEW AT REST"); props.copSpriteFinished(props.idx);}})
+        debugLog("in useEffect");
+        if(dismissed) {
+          debugLog("dismissed: ");
+          set({ to: [{ left: "40%", bottom: "%40", width: "30%", opacity: 1},{opacity: 0}], loop: false, config: {duration: 400},  onRest: () => {debugLog("NEW AT REST"); copSpriteFinished(idx);}})
         
 
             
         }
-      }, [props.dismissed, props.copSpriteFinished, set]);
+    }, [dismissed, copSpriteFinished, idx, set]);
+
 
       return (<animated.img style={{position: "absolute", zIndex: props.zIndex, ...styles}} src={props.image}/>)
 

@@ -11,7 +11,8 @@
     "AvailableCommunityBudget": 0,
     "LevelUpCount": 20,
     "LevelUpMultiplier": 10,
-    "EasterEggInterval": 25,
+    "EasterEggEnabled": false,
+    "EasterEggInterval": 5,
     "DefundButtons" : [
         {
             "Label" : "Officer",
@@ -287,29 +288,12 @@
     ],
     "EasterEggs" : [
         {
-            "Name" : "Sacred Community Connections",
+            "Name" : "Example Easter Egg",
             "Logo" : "Logo",
-            "Description" : "Sacred Community Connections or SCC is made up of folks who are currently/have been houseless, substance dependent, sex worker/street hustlers and black queer/trans folks. We know that we will only be cared for and truly supported by us so we started an organization that provides care, resources, friendship, case management, mutual aid, conflict/crisis prevention/response and wellness classes to us. We believe that when the systems that govern our lives have failed us it is because they didn’t have a true life understanding of what we were going through. We aim to be the organization we were/have looked for in the past.",
+            "Description" : "Description of an organization or initiative for which we can raise awareness.",
             "Links" : [
-                {"Text" : "Sacred Community Connections on Facebook", "Url" : "https://orglink"}
-            ]
-        },
-        {
-            "Name" : "Queer the Land",
-            "Logo" : "Logo",
-            "Description" : "Queer The Land is a collaborative project grounded in the self-determination of queer, transgender, and Two-Spirit Black/ indigenous/ people of color (QT2BIPOC) and the vision of collectively owning our land and labor. Founded in Summer 2016 by two local QT2BIPOC community-based organizations, Building Autonomy and Safety for Everybody and the Queer & Trans Pan-African Exchange, we’re working to establish a cooperative network anchored by a community center and transitional and semi-permanent housing that meets the needs of working-class QT2BIPOC in the greater Seattle area.",
-            "Links" : [
-                { "Text" : "queertheland.org",  "Url" : "https://queertheland.org/"}
-            ]
-        },
-        {
-            "Name" : "Puentes",
-            "Logo" : "Logo",
-            "Description" : "Puentes mobilizes mental health resources to help undocumented migrants and their families cope and flourish despite our broken immigration system. They create innovating therapeutic spaces to promote social healing, the recovery of social agency, and engage community members to work towards immigration justice in the US.",
-            "Links" : [
-                { "Text" : "www.puentesseattle.org",  "Url" : "http://www.puentesseattle.org/"},
-                { "Text" : "Puentes on Facebook",  "Url" : "https://www.facebook.com/puentesseattle"},
-                { "Text" : "Puentes on Twitter",  "Url" : "https://twitter.com/PuentesSeattle"}
+                {"Text" : "Organization link 1", "Url" : "https://orglink"},
+                {"Text" : "Organization link 2", "Url" : "https://orglink"}
             ]
         }
     ]
