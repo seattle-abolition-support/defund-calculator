@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { isMobile } from 'mobile-device-detect'
-
+import {debugLog} from './DebugLog'
 
 import Game from './Game'
 import BudgetCounter from './BudgetCounter'
@@ -39,7 +38,6 @@ export default class App extends React.Component {
       currentEasterEgg: 0
     };
 
-    console.log("isMobile2: " + isMobile);
     this.recalculateBudgets();
     
   }
@@ -47,7 +45,7 @@ export default class App extends React.Component {
 
   // On every change, recalculate budgets
   recalculateBudgets = () =>  {
-    console.log("recalculateBudgets");
+    debugLog("recalculateBudgets");
     
       
     var d = this.state.data;
@@ -69,7 +67,7 @@ export default class App extends React.Component {
     d.AvailableCommunityBudget = d.TotalCommunityBudget - d.AllocatedCommunityBudget;
 
     // Unlock the category buttons when there's enough available community budget to buy something
-    console.log("CategoriesUnlocked " + d.AvailableCommunityBudget + " " + d.CommunityItemCost);
+    debugLog("CategoriesUnlocked " + d.AvailableCommunityBudget + " " + d.CommunityItemCost);
     let categoriesUnlocked = this.state.categoriesUnlocked;
     if(d.AvailableCommunityBudget >= d.CommunityItemCost) {
       // If categories weren't unlocked, show the unlock message.
@@ -85,9 +83,9 @@ export default class App extends React.Component {
     let levelUp = this.state.levelUp;
     let showLevelUp = false;
     if(this.state.levelUp === 0){
-      //console.log("Level Up Check " + (d.AllocatedCommunityBudget / d.CommunityItemCost) + " " + d.LevelUpCount);
+      //debugLog("Level Up Check " + (d.AllocatedCommunityBudget / d.CommunityItemCost) + " " + d.LevelUpCount);
       if(d.AllocatedCommunityBudget / d.CommunityItemCost >= d.LevelUpCount) {
-        //console.log("Level up");
+        //debugLog("Level up");
         levelUp = 1;
         showLevelUp = true;
         message = d.UI.LevelUpText;
@@ -100,15 +98,18 @@ export default class App extends React.Component {
     let showEasterEgg = this.state.showEasterEgg;
     let easterEggCount = this.state.easterEggCount;
     let currentEasterEgg = this.state.currentEasterEgg;
-    console.log("Easter egg check " + easterEggCount + " " + d.EasterEggInterval);
-    if(easterEggCount >= d.EasterEggInterval) {
-      console.log("Show easter egg!");
-      easterEggCount = 0;
-      currentEasterEgg = (currentEasterEgg + 1) % d.EasterEggs.length;
-      showEasterEgg = true;
-    } else
-    {
-      easterEggCount += 1;
+
+    if(d.EasterEggEnabled) {
+      debugLog("Easter egg check " + easterEggCount + " " + d.EasterEggInterval);
+      if(easterEggCount >= d.EasterEggInterval) {
+        debugLog("Show easter egg!");
+        easterEggCount = 0;
+        currentEasterEgg = (currentEasterEgg + 1) % d.EasterEggs.length;
+        showEasterEgg = true;
+      } else
+      {
+        easterEggCount += 1;
+      }
     }
     
     // Set state. Update data, message, categoriesUnlocked, levelUp
@@ -133,7 +134,7 @@ export default class App extends React.Component {
 
     // Defund c officers
     d.CurrentOfficerCount = d.CurrentOfficerCount - c;
-    //console.log("CurrentOfficerCount: " + d.CurrentOfficerCount);
+    //debugLog("CurrentOfficerCount: " + d.CurrentOfficerCount);
 
     // If zero officers left, victory!
     let showVictory = this.state.showVictory;
@@ -183,7 +184,7 @@ export default class App extends React.Component {
         break;
       }
     }
-    console.log("categoryIdx: " + idx);
+    debugLog("categoryIdx: " + idx);
 
     let message = cat.Messages[cat.CurrentMessage].Text;
     let messageCitation = "";
@@ -228,14 +229,14 @@ export default class App extends React.Component {
 
         // Pick a random item from the selected category.
         let item = Math.floor(Math.random() * d.Categories[idx].Items.length);
-        //console.log("item: " + item + " " + d.Categories[idx].Items[item]);
+        //debugLog("item: " + item + " " + d.Categories[idx].Items[item]);
 
         if(this.state.levelUp === 0) {
           // If not leveled up, just add one item
           d.Categories[idx].ItemList.push(item);
         } else {
           // If leveled up, add LevelUpMultipler items
-          console.log("levelUp" + this.state.levelUp + " itemsToAdd: " + d.LevelUpMultiplier);
+          debugLog("levelUp" + this.state.levelUp + " itemsToAdd: " + d.LevelUpMultiplier);
           for(var count = 0; count < d.LevelUpMultiplier; count++) {
             d.Categories[idx].ItemList.push(item);
           }
@@ -265,13 +266,13 @@ export default class App extends React.Component {
     else if(this.state.selectedCategory.ItemList.length > 0)
     {
       // n < 1 means deallocate
-      console.log("in deallocate itemlist.length:" + d.Categories[idx].ItemList.length);
+      debugLog("in deallocate itemlist.length:" + d.Categories[idx].ItemList.length);
       if(this.state.levelUp === 0) {
         // If not leveled up, just remove one item
-        console.log("not leveled. itemlist.length: " + d.Categories[idx].ItemList.length);
+        debugLog("not leveled. itemlist.length: " + d.Categories[idx].ItemList.length);
         d.Categories[idx].ItemList.pop();
       } else {
-        console.log("leveled. ")
+        debugLog("leveled. ")
         // If leveled up, add LevelUpMultipler items
         for(var multiplier = 0; multiplier < d.LevelUpMultiplier; multiplier++) {
           if(d.Categories[idx].ItemList.length > 0) {
@@ -354,16 +355,16 @@ export default class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.state.gameDefundCount !== 0) {
-      //console.log("componentDidUpdate");
-      //console.log("gameDefundCount " + this.state.gameDefundCount);
+      //debugLog("componentDidUpdate");
+      //debugLog("gameDefundCount " + this.state.gameDefundCount);
       this.setState((state, props) => ({
         gameDefundCount : 0
       }));
     }
 
     if(this.state.gameFundCount !== 0) {
-      //console.log("componentDidUpdate FUND");
-      //console.log("gameFundCount " + this.state.gameFundCount);
+      //debugLog("componentDidUpdate FUND");
+      //debugLog("gameFundCount " + this.state.gameFundCount);
       this.setState((state, props) => ({
         gameFundCount : 0
       }));
@@ -372,8 +373,8 @@ export default class App extends React.Component {
   
 
   render() {
-    console.log("in render");
-    //console.log(this.state.data.UI.MainTitle);
+    debugLog("in render");
+    //debugLog(this.state.data.UI.MainTitle);
 
     let categoryButtonClass = "CategoryButton";
     let selectedCategoryClass = "CategoryButtonSelected";
@@ -406,7 +407,7 @@ export default class App extends React.Component {
     
 
     let showMain = ! (this.state.showMe | this.state.showResources | this.state.showAbout | this.state.showVictory | this.state.showEasterEgg)
-    console.log("SHOWMAIN: " + showMain)
+    debugLog("SHOWMAIN: " + showMain)
 
     return (
     
@@ -529,8 +530,8 @@ export default class App extends React.Component {
 //   render() {    
 //     const d = this.props.data;
 //     let egg = d.EasterEggs[this.props.currentEasterEgg];
-//     console.log(d.EasterEggs);
-//     console.log("egg: " + egg);
+//     debugLog(d.EasterEggs);
+//     debugLog("egg: " + egg);
 //     return (
 //       <div className="EasterEggScreen" style={(isMobile) ? {} : {width: "500px", left: "50%", transform: "translateX(-50%)"}}>
 //         <div className="EasterEggTitle">{d.UI.EasterEggTitle}</div>

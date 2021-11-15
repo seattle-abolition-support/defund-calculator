@@ -1,4 +1,5 @@
 import React from 'react';
+import {debugLog} from './DebugLog'
 
 import CopSprite from './CopSprite'
 import MoneySprite from './MoneySprite'
@@ -41,9 +42,7 @@ import Tulip from "./images/city stuff/tulip.svg"
 import LevelUpImage from "./images/interface stuff/level-up.svg"
 import ShiftChangeImage from "./images/interface stuff/shift-change.svg"
 
-import temp from "./images/city-progression/01.gif"
-console.log("temp")
-console.log(temp)
+
 
 function importAll(r) {
   return r.keys().map(r);
@@ -105,7 +104,7 @@ class Game extends React.Component {
         <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden"}}>
          
 
-        <img src={this.state.progressImages[this.state.progressIdx]} style={{position: "absolute", left: "0%", bottom: "0%", width: "100%", height: "auto", zIndex:"-100"}}/>
+        <img src={this.state.progressImages[this.state.progressIdx]} style={{position: "absolute", left: "0%", bottom: "0%", width: "100%", height: "auto", zIndex:"-100"}} alt=""/>
 
         {this.state.spriteData.map((data, index) => (
             <CopSprite key={"CopSprite_" + data.idx} 
@@ -152,10 +151,10 @@ class Game extends React.Component {
         ))}
 
         {this.props.showLevelUp ? 
-          <img src={LevelUpImage} style={{position: "absolute", left: "0%", bottom: "20%", width: "100%", height: "auto", zIndex : 1000}}/> : null
+          <img src={LevelUpImage} style={{position: "absolute", left: "0%", bottom: "20%", width: "100%", height: "auto", zIndex : 1000}} alt=""/> : null
         }
         {this.state.shiftChange ? 
-          <img src={ShiftChangeImage} style={{position: "absolute", left: "0%", bottom: "20%", width: "100%", height: "auto", zIndex : 1000}}/> : null
+          <img src={ShiftChangeImage} style={{position: "absolute", left: "0%", bottom: "20%", width: "100%", height: "auto", zIndex : 1000}} alt=""/> : null
         }
         </div>
       );
@@ -164,9 +163,9 @@ class Game extends React.Component {
     // Called after the update so that you can reset the state of things after rendering
     componentDidUpdate(prevProps, prevState) {
       
-      console.log("game componentDidUpdate " + this.props.gameDefundCount);
-      console.log(this.props);
-      console.log("copIdx: " + this.state.copIdx);
+      debugLog("game componentDidUpdate " + this.props.gameDefundCount);
+      debugLog(this.props);
+      debugLog("copIdx: " + this.state.copIdx);
 
       // If gameDefundCount was 0 but isn't now, pop cop data
       if(prevProps.gameDefundCount === 0 && this.props.gameDefundCount !== 0) {
@@ -175,7 +174,7 @@ class Game extends React.Component {
           var copIdx = this.state.spriteData[Math.floor(Math.random() * this.state.spriteData.length)].idx
 
 
-          console.log("Setting cop idx / launching money");
+          debugLog("Setting cop idx / launching money");
 
 
           let newMoneySpriteData = this.state.moneySpriteData;
@@ -266,7 +265,7 @@ class Game extends React.Component {
     }
 
     copSpriteFinished = (idx ) => {
-      console.log("copSpriteFinished: " + idx);
+      debugLog("copSpriteFinished: " + idx);
       let sd = this.state.spriteData;
       let newSpriteData = [];
       for(var i = 0; i < sd.length; i++) {
@@ -275,7 +274,7 @@ class Game extends React.Component {
         }
       }
 
-      console.log("newSpriteData.length: " + newSpriteData.length);
+      debugLog("newSpriteData.length: " + newSpriteData.length);
 
       let shiftChange = this.state.shiftChange;
       if(newSpriteData.length === 0) {
@@ -292,7 +291,7 @@ class Game extends React.Component {
     }
 
     moneySpriteFinished = (idx) => {
-      console.log("moneySpriteFinished: " + idx);
+      debugLog("moneySpriteFinished: " + idx);
       let newMoneySpriteData = [];
 
       for(var i = 0; i < this.state.moneySpriteData.length; i++) {
@@ -313,7 +312,7 @@ class Game extends React.Component {
 
   
     getCityImage = () => {
-      console.log("getCityImage: " + this.props.selectedCategory.Name);
+      debugLog("getCityImage: " + this.props.selectedCategory.Name);
 
       let categoryName = "DEFAULT"
       if(cityImages[this.props.selectedCategory.Name]) {
