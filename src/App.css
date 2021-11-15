@@ -106,9 +106,21 @@ body {
   position: relative;
   z-index: 2;
   display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: stretch;
+  grid-template-columns: 3.1fr .75fr 4.3fr .69fr 3.1fr;
   margin-top:.6em;
+}
+
+.ScorePB, .scorePD {
+  margin-top:-2px;
+}
+
+.ScorePB {
+    text-align:right
+}
+
+.scorePD {
+    text-align:left
 }
 
 .BudgetBar {
