@@ -45,9 +45,16 @@ body {
   font-size:calc(100% + 4vw);
   background-color: #39B54A;
   padding:.3em 0;
-  color:#FCE826;
   font-weight:bold;
   text-shadow: -2.5px 4px #44479A;
+}
+
+.greenBackground {
+  color:#FCE826;
+}
+
+.blueBackground {
+  color:#00AEEF;
 }
 
 @media screen and (min-width: 450px) {
@@ -134,13 +141,13 @@ background-color: #39688E;
   color:#333;
   line-height:1.2;
   background-color: #FFFF99;
-  display: table-cell;
   height: 5em;
-  padding: .25em .25em .25em .25em;
 }
 .StatusTextText {
   vertical-align: middle;
-  text-align:center;
+  text-align: left;
+  display: table-cell;
+  padding: .4em;
 }
 
 .MiddleContainer {
