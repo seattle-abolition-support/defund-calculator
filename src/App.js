@@ -4,6 +4,7 @@ import {debugLog} from './DebugLog'
 
 import Game from './Game'
 import BudgetCounter from './BudgetCounter'
+import StatusTextBox from './StatusTextBox'
 import AboutPage from './AboutPage'
 import ShowMePage from './ShowMePage'
 import ResourcesPage from './ResourcesPage'
@@ -13,7 +14,7 @@ import EasterEggPage from './EasterEggPage'
 import Data from "./data.json";
 import LittleCheckMark from "./images/interface stuff/little-check-mark.svg"
 import LittleShield from "./images/interface stuff/little-shield.svg"
-
+import LittleHeart from "./images/interface stuff/little-heart.svg"
 
 
 export default class App extends React.Component {
@@ -29,6 +30,7 @@ export default class App extends React.Component {
       showResources: false,
       showAbout: false,
       showVictory: false,
+      showInstructions: true,
       gameDefundCount: 0,
       gameFundCount: 0,
       levelUp: 0,
@@ -147,6 +149,8 @@ export default class App extends React.Component {
       // VICTORY!!!
     }
 
+    let showInstructions = false;
+
     // Check to see which button has Number = c. Store the idx in gameDefundCount.
     // gameDefundCount is passed to the game to trigger update type 1, 2, or 3.
     let gameDefundCount = 0;
@@ -167,7 +171,8 @@ export default class App extends React.Component {
       //statusMessage : d.UI.CopPhrases[Math.floor(Math.random() * d.UI.CopPhrases.length)],
       statusMessage : statusMessageText,
       statusMessageCitation : statusMessageCitation,
-      showVictory: showVictory
+      showVictory: showVictory,
+      showInstructions, showInstructions
     }), () => this.recalculateBudgets());
 
 
@@ -446,11 +451,11 @@ export default class App extends React.Component {
         </div>
         <div className="Screen">
           <div className="ScoreRow">
-            <div className="ScorePB">{this.formatDollars(this.state.data.TotalCommunityBudget.toString())}</div><div><img src={LittleCheckMark} alt="A little check mark." /></div>
+            <div className="ScorePB">{this.formatDollars(this.state.data.TotalCommunityBudget.toString())}</div><div><img src={LittleHeart} alt="A little heart." style={{height: "1em", width: "auto"}}/></div>
             <div className="BudgetBar" style={{ gridTemplateColumns : this.state.data.TotalCommunityBudget + "fr " +  this.state.data.CurrentPoliceBudget + "fr"}}>
               <div className="GoodBar"/>
               <div className="BadBar"/></div>
-            <div><img src={LittleShield} alt="A little badge." /></div><div className="ScorePD">{this.formatDollars(this.state.data.CurrentPoliceBudget.toString())}</div>
+            <div><img src={LittleShield} alt="A little badge." style={{height: "1em", width: "auto"}}/></div><div className="ScorePD">{this.formatDollars(this.state.data.CurrentPoliceBudget.toString())}</div>
           </div>
           <div> {this.state.data.ScreenMessage}</div>
           <div className="GameArea">
@@ -459,10 +464,13 @@ export default class App extends React.Component {
               gameFundCount = {this.state.gameFundCount} 
               showLevelUp = {this.state.showLevelUp} 
               selectedCategory = {this.state.selectedCategory}
+              showInstructions = {this.state.showInstructions}
               />
           </div>
         </div>
-        <div className="StatusTextBox">
+
+
+        {/* <div className="StatusTextBox">
 
           { (!this.state.citationOn) ?
           <div className="StatusTextText">
@@ -482,7 +490,9 @@ export default class App extends React.Component {
             >source</div>
           : null
           }
-        </div>
+        </div> */}
+        <StatusTextBox statusMessage={this.state.statusMessage} citationOn={this.state.citationOn} statusMessageCitation={this.state.statusMessageCitation} toggleCitationOn={this.toggleCitationOn} toggleCitationOff={this.toggleCitationOff}/>
+
         <div className="MainTitle greenBackground">{this.state.data.UI.MainTitle2}</div>
         <div className="MiddleContainer">
           <div className="AvailableTextBox">

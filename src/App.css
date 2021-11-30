@@ -141,7 +141,7 @@ body {
 }
 
 .GoodBar {
-background-color: #FBE71F;
+background-color: #E28DDA;
 }
 .BadBar {
 background-color: #39688E;
@@ -162,7 +162,7 @@ background-color: #39688E;
   color:#333;
   line-height:1.2;
   background-color: #FFFF99;
-  height: 5em;
+  height: 6em;
 }
 .StatusTextText {
   vertical-align: middle;
