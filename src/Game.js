@@ -42,7 +42,8 @@ import Tulip from "./images/city stuff/tulip.svg"
 import LevelUpImage from "./images/interface stuff/level-up.svg"
 import ShiftChangeImage from "./images/interface stuff/shift-change.svg"
 
-
+import LittleShield from "./images/interface stuff/little-shield.svg"
+import LittleHeart from "./images/interface stuff/little-heart.svg"
 
 function importAll(r) {
   return r.keys().map(r);
@@ -103,6 +104,8 @@ class Game extends React.Component {
       return (
         <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden"}}>
          
+        
+
 
         <img src={this.state.progressImages[this.state.progressIdx]} style={{position: "absolute", left: "0%", bottom: "0%", width: "100%", height: "auto", zIndex:"-100"}} alt=""/>
 
@@ -155,6 +158,19 @@ class Game extends React.Component {
         }
         {this.state.shiftChange ? 
           <img src={ShiftChangeImage} style={{position: "absolute", left: "0%", bottom: "20%", width: "100%", height: "auto", zIndex : 1000}} alt=""/> : null
+        }
+        {this.props.showInstructions ?
+          <div style={{ position: "absolute", backgroundColor: "#555555", left: "0%", bottom: "0%", width: "100%", height: "90%", zIndex: 1000, opacity: ".9"}}/> : null}
+        {this.props.showInstructions ?
+          <div style={{ position: "absolute", color: "#ffffff", left: "0%", bottom: "0%", width: "100%", height: "90%", zIndex: 1001, opacity: "1", fontWeight: "normal"}}>
+            <p>Click the defund buttons above to reduce the police budget <img src={LittleShield} alt="A little badge." style={{height: "1em", width: "auto"}}/> and 
+            increase the budget for community investment <img src={LittleHeart} alt="A little heart." style={{height: "1em", width: "auto"}}/>.
+            </p>
+            <p>Select a category below and click the + button to allocate community funds in the selected category.</p>
+            <p>Click SHOW ME WHAT I'VE FUNDED below at any time to see the list of community investments you've made.</p>
+            <p>Click a defund button to get started!</p>
+          </div> 
+          : null
         }
         </div>
       );
