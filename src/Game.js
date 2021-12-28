@@ -160,9 +160,9 @@ class Game extends React.Component {
           <img src={ShiftChangeImage} style={{position: "absolute", left: "0%", bottom: "20%", width: "100%", height: "auto", zIndex : 1000}} alt=""/> : null
         }
         {this.props.showInstructions ?
-          <div style={{ position: "absolute", backgroundColor: "#555555", left: "0%", bottom: "0%", width: "100%", height: "90%", zIndex: 1000, opacity: ".9"}}/> : null}
+          <div style={{ position: "absolute", backgroundColor: "#555555", left: "5%", bottom: "0%", width: "90%", height: "86%", zIndex: 1000, opacity: ".9", font-weight: "normal", text-align: "left", font-size: "95%"}}/> : null}
         {this.props.showInstructions ?
-          <div style={{ position: "absolute", color: "#ffffff", left: "0%", bottom: "0%", width: "100%", height: "90%", zIndex: 1001, opacity: "1", fontWeight: "normal"}}>
+          <div style={{ position: "absolute", color: "#ffffff", left: "5%", bottom: "0%", width: "90%", height: "86%", zIndex: 1001, opacity: "1", font-weight: "normal", text-align: "left", font-size: "95%"}}>
             <p>Click the defund buttons above to reduce the police budget <img src={LittleShield} alt="A little badge." style={{height: "1em", width: "auto"}}/> and 
             increase the budget for community investment <img src={LittleHeart} alt="A little heart." style={{height: "1em", width: "auto"}}/>.
             </p>
