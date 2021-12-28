@@ -64,7 +64,8 @@ body {
 }
 
 .blueBackground {
-  color:#00AEEF;
+   background-color: #0297CE;
+   color: #fce826;
 }
 
 @media screen and (min-width: 450px) {
@@ -104,7 +105,7 @@ body {
   font-family:'Myriad';
   display: flex;
   flex-direction: column;
-  background-color: #C9C9C9;
+  background-color: #e1dfda;
   height: 17em;
   position: relative;
   z-index: 0;
@@ -112,7 +113,7 @@ body {
 }
 
 .ScoreRow {
-  background-color: rgba(201, 201, 201, 0.9);
+  background-color: #e1dfda;
   position: relative;
   z-index: 2;
   display: grid;
@@ -130,7 +131,10 @@ body {
 }
 
 .scorePD {
-    text-align:left
+    text-align:left;
+    position: relative;
+    top: -.1em;
+    left: -.3em;
 }
 
 .BudgetBar {
@@ -161,14 +165,16 @@ background-color: #39688E;
   font-family:'Myriad';
   color:#333;
   line-height:1.2;
-  background-color: #FFFF99;
+  background-color:#f4ead6;
   height: 6em;
 }
 .StatusTextText {
   vertical-align: middle;
   text-align: left;
   display: table-cell;
-  padding: .4em;
+  padding: 1em;
+  color: rgb(57, 41, 20);
+  opacity: 1;
 }
 
 .MiddleContainer {
