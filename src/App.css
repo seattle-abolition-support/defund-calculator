@@ -130,11 +130,10 @@ body {
     text-align:right
 }
 
-.scorePD {
+.ScorePD {
     text-align:left;
     position: relative;
     top: -.1em;
-    left: -.3em;
 }
 
 .BudgetBar {
