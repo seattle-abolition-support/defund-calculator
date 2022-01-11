@@ -94,6 +94,7 @@ body {
   padding: .30em 0 .1em 0;
   -webkit-box-shadow: 4px 4px 0px 1px #44479A; 
   box-shadow: 4px 4px 0px 1px #44479A;
+  cursor: pointer;
 }
 
 .officers {
@@ -214,6 +215,7 @@ background-color: #39688E;
 .AllocateButton {
   -webkit-box-shadow: 4px 4px 0px -.3px #0B673A; 
   box-shadow: 4px 4px 0px -.3px #0B673A;
+  cursor: pointer;
 }
 
 .AllocateButtonDiv div:first-child {
@@ -248,6 +250,7 @@ background-color: #39688E;
   background-color: #BEE2AF;
   -webkit-box-shadow: 4px 4px 0px 1px #469B52; 
   box-shadow: 5px 5px 0px 0px #469B52;
+  cursor: pointer;
 }
 
 .CategoryButtonDisabled {
@@ -308,6 +311,7 @@ background-color: #39688E;
 .ShowMeButton {
   background-color: #444342;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .ShowMeButtonDisabled {
@@ -327,6 +331,7 @@ background-color: #39688E;
   margin: 0;
   -webkit-box-shadow: 4px 4px 0px 1px #995996; 
   box-shadow: 5px 5px 0px 0px #995996;
+  cursor: pointer;
 }
 
 .ResourceLink {
@@ -351,6 +356,7 @@ background-color: #39688E;
   margin-top: 10%;
   -webkit-box-shadow: 4px 4px 0px 1px #7C6A21; 
   box-shadow: 5px 5px 0px 0px #7C6A21;
+  cursor: pointer;
 }
 
 .ShowMeScreen {
@@ -495,9 +501,8 @@ background-color: #39688E;
   margin-top: 5vh;
   padding: 2vh;
   filter: drop-shadow(.5vmin .5vmin 0px #965192); 
+  cursor: pointer;
 }
-
-
 
 .ReturnToDefundButton {
   background-color: #2BB673;
@@ -512,5 +517,6 @@ background-color: #39688E;
   margin-top: 5vh;
   margin-bottom: 5vh;
   padding: 2vh;
-  filter: drop-shadow(.5vmin .5vmin 0px #006838); 
+  filter: drop-shadow(.5vmin .5vmin 0px #006838);
+  cursor: pointer;
 }
