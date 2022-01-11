@@ -484,7 +484,7 @@ export default class App extends React.Component {
           </div>
           }
           { this.state.statusMessageCitation !== "" ? 
-          <div style={{position: "absolute", right : "5px", bottom: "0px" }} 
+          <div style={{position: "absolute", right : "5px", bottom: "0px", cursor: "pointer"}} 
             onMouseOver={() => this.toggleCitationOn()}
             onMouseOut={() => this.toggleCitationOff()}
             >source</div>
