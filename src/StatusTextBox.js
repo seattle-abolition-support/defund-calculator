@@ -46,7 +46,7 @@ const StatusTextBox = (props) => {
             </div>
             }
             { props.statusMessageCitation !== "" ? 
-                <div style={{position: "absolute", right : "5px", bottom: "0px", color : "#3f65c1" }} 
+                <div style={{position: "absolute", right : "5px", bottom: "0px", color : "#3f65c1", cursor: "pointer" }} 
                     onMouseOver={() => props.toggleCitationOn()}
                     onMouseOut={() => props.toggleCitationOff()}
                 >source</div>
